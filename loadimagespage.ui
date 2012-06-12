@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoadImagesPage</class>
+ <widget class="QWizardPage" name="LoadImagesPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>WizardPage</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>0</y>
+     <width>339</width>
+     <height>353</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="formLayout">
+    <property name="fieldGrowthPolicy">
+     <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+    </property>
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>60</number>
+    </property>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="load">
+      <property name="text">
+       <string>Load images</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QListWidget" name="images">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>250</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QFrame" name="frame">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>100</width>
+        <height>24</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QToolButton" name="addImage">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>25</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="removeImage">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>0</y>
+         <width>25</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>load</sender>
+   <signal>clicked()</signal>
+   <receiver>LoadImagesPage</receiver>
+   <slot>loadImages()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>94</x>
+     <y>74</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>36</x>
+     <y>23</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeImage</sender>
+   <signal>clicked()</signal>
+   <receiver>LoadImagesPage</receiver>
+   <slot>removeImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>186</x>
+     <y>259</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>64</x>
+     <y>239</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addImage</sender>
+   <signal>clicked()</signal>
+   <receiver>LoadImagesPage</receiver>
+   <slot>addImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>153</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>372</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>loadImages()</slot>
+  <slot>removeImage()</slot>
+  <slot>addImage()</slot>
+ </slots>
+</ui>
