@@ -17,41 +17,41 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="camParamLabel">
        <property name="text">
         <string>Camera parameters</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="camParam"/>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="imgLabel">
        <property name="text">
         <string>Initial image</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="img"/>
      </item>
      <item row="1" column="2">
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="borwseImg">
        <property name="text">
         <string>Load image</string>
        </property>
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="browseParam">
        <property name="text">
         <string>Browse</string>
        </property>
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="undistort">
        <property name="text">
         <string>Undistort</string>
        </property>
