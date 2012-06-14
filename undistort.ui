@@ -6,79 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>355</width>
-    <height>243</height>
+    <width>473</width>
+    <height>344</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Undistort</string>
+   <string>Dialog</string>
   </property>
-  <widget class="Line" name="line">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>60</y>
-     <width>341</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
      <y>10</y>
-     <width>309</width>
-     <height>47</height>
-    </rect>
-   </property>
-   <layout class="QFormLayout" name="formLayout_3">
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Image undistortion</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>Specify the file containg the camera parameters and the image 
- to undistort</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QPushButton" name="undistort">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>180</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Undistort</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>100</y>
      <width>317</width>
-     <height>54</height>
+     <height>103</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -90,14 +31,7 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QLineEdit" name="camParam"/>
-    </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="loadParam">
-      <property name="text">
-       <string>Browse</string>
-      </property>
-     </widget>
+     <widget class="QLineEdit" name="lineEdit"/>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_2">
@@ -107,21 +41,52 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="initialImg"/>
+     <widget class="QLineEdit" name="lineEdit_2"/>
     </item>
     <item row="1" column="2">
-     <widget class="QPushButton" name="loadImage">
+     <widget class="QPushButton" name="pushButton_2">
       <property name="text">
-       <string>Load</string>
+       <string>Load image</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QFrame" name="frame_2">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout"/>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Browse</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>Undistort</string>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <zorder>layoutWidget</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>line</zorder>
-  <zorder>undistort</zorder>
  </widget>
  <resources/>
  <connections/>
