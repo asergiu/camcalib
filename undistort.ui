@@ -75,5 +75,22 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>undistort</sender>
+   <signal>clicked()</signal>
+   <receiver>Undistort</receiver>
+   <slot>open()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>323</x>
+     <y>155</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

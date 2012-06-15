@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'undistort.ui'
 **
-** Created: Thu Jun 14 13:29:08 2012
+** Created: Fri Jun 15 15:52:34 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -92,6 +92,7 @@ public:
 
 
         retranslateUi(Undistort);
+        QObject::connect(undistort, SIGNAL(clicked()), Undistort, SLOT(open()));
 
         QMetaObject::connectSlotsByName(Undistort);
     } // setupUi

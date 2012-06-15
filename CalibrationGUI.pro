@@ -12,10 +12,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    undistort.cpp
+    fileutils.cpp
 
 HEADERS  += mainwindow.h \
-    undistort.h
+    fileutils.h
 
 FORMS    += mainwindow.ui \
     undistort.ui
+
+RESOURCES +=

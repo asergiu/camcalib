@@ -14,6 +14,8 @@ class Undistort : public QDialog
 public:
     explicit Undistort(QWidget *parent = 0);
     ~Undistort();
+
+
     
 private:
     Ui::Undistort *ui;
