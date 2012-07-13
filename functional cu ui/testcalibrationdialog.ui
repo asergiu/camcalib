@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TestCalibrationDialog</class>
+ <widget class="QDialog" name="TestCalibrationDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>423</width>
+    <height>262</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Number of images</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QSpinBox" name="no_imagesSpinBox">
+       <property name="minimumSize">
+        <size>
+         <width>133</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Sample images path</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="images_path"/>
+     </item>
+     <item row="1" column="3">
+      <widget class="QPushButton" name="browse">
+       <property name="text">
+        <string>Browse</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Image extension</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="image_extension">
+       <property name="text">
+        <string>.jpg</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLineEdit" name="left_image_name"/>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLineEdit" name="right_image_name"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Left image</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Right image</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="QPushButton" name="load_left">
+       <property name="text">
+        <string>Load</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="3">
+      <widget class="QPushButton" name="load_right">
+       <property name="text">
+        <string>Load</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Board width</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="2">
+      <widget class="QSpinBox" name="board_widthSpinBox">
+       <property name="value">
+        <number>9</number>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Board height</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="2">
+      <widget class="QSpinBox" name="board_heightSpinBox">
+       <property name="value">
+        <number>6</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>208</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="startCalib">
+       <property name="text">
+        <string>Start calibration</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>browse</sender>
+   <signal>clicked()</signal>
+   <receiver>TestCalibrationDialog</receiver>
+   <slot>browseImagesPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>336</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>369</x>
+     <y>9</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>load_left</sender>
+   <signal>clicked()</signal>
+   <receiver>TestCalibrationDialog</receiver>
+   <slot>loadLeftImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>326</x>
+     <y>122</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>358</x>
+     <y>90</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>load_right</sender>
+   <signal>clicked()</signal>
+   <receiver>TestCalibrationDialog</receiver>
+   <slot>loadRightImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>352</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>378</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>startCalib</sender>
+   <signal>clicked()</signal>
+   <receiver>TestCalibrationDialog</receiver>
+   <slot>startCalib()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>284</x>
+     <y>177</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>150</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>browseImagesPath()</slot>
+  <slot>loadRightImage()</slot>
+  <slot>loadLeftImage()</slot>
+  <slot>startCalib()</slot>
+ </slots>
+</ui>
