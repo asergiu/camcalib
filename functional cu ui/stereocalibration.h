@@ -19,7 +19,6 @@ public:
     void getInfoFromImages();
     void initRectifyBouguet(StereoCameraParameters* stereoCameraParameters);
     // rectify_mode 1 = Harley, 2 = Bouguet
-    int rectifyImages(CvArr* leftImage, CvArr* rightImage, int rectify_mode = 1);
 
     int rectifyImages(CvArr* leftImage, CvArr* rightImage, CvStereoBMState* BMState);
 

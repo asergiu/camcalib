@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-//    MainWindow w;
-//    w.show();
+    MainWindow w;
+    w.show();
 
 //    StereoCalibrationForm stereoCalibForm;
 //    stereoCalibForm.show();
@@ -17,11 +17,11 @@ int main(int argc, char *argv[])
 //    AdjustBMParam adjustParam;
 //    adjustParam.show();
 
-    StereoCalibration* stereoCalibration = new StereoCalibration();
+//    StereoCalibration* stereoCalibration = new StereoCalibration();
 
 
-    TestCalibrationDialog testDialog;
-    testDialog.show();
+//    TestCalibrationDialog testDialog;
+//    testDialog.show();
 
 
 

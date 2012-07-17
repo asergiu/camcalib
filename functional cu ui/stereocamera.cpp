@@ -29,15 +29,15 @@ void StereoCamera::capture(){
 
 bool StereoCamera::initialize(){
 
-    mCap_captures[0] = cvCaptureFromCAM(CV_CAP_DSHOW + 0);
-    mCap_captures[1] = cvCaptureFromCAM(CV_CAP_DSHOW + 1);
+    mCap_captures[0] = cvCaptureFromCAM(0);
+    mCap_captures[1] = cvCaptureFromCAM(1);
 
     if( mCap_captures[0] && mCap_captures[1]){
 
-        //        for(int i = 0; i < 2; i++){
-        //            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, mS_imageSize.width);
-        //            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, mS_imageSize.height);
-        //        }
+                for(int i = 0; i < 2; i++){
+                    cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, 320);
+                    cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, 240);
+                }
 
         return true;
     }

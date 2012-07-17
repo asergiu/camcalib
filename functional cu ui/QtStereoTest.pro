@@ -41,6 +41,10 @@ FORMS    += \
     adjustbmparam.ui \
     mainwindow.ui \
     testcalibrationdialog.ui
-INCLUDEPATH += C:\OpenCV2.1\include
 
-LIBS += -LC:\OpenCV2.1\lib -lcv210 -lhighgui210 -lcxcore210
+INCLUDEPATH += /usr/local/include/
+#LIBS+= -L/usr/local/lib/ -lopencv_core -lopencv_legacy -lopencv_imgproc -lopencv_objdetect -lopencv_ml -lopencv_highgui -lopencv_calib3d
+LIBS+= /usr/local/lib/libopencv_core.so.2.4.1
+LIBS+= /usr/local/lib/libopencv_legacy.so.2.4.1
+LIBS+= /usr/local/lib/libopencv_highgui.so.2.4.1
+

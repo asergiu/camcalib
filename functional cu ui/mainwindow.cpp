@@ -7,21 +7,34 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(&timer, SIGNAL(timeout()), this, SLOT(update_time()));
+     connect(&timer, SIGNAL(timeout()), this, SLOT(update_time()));
 
 
     this->ui->pushButtonCalibrate->setEnabled(true);
 
-    leftCapture = cvCreateCameraCapture(0);
-    rightCapture = cvCreateCameraCapture(1);
+//    leftCapture = cvCreateCameraCapture(0);
+//    rightCapture = cvCreateCameraCapture(1);
 
     camera_ready = stereoCamera.initialize();
+
+    stereoCamera.capture();
+
+    IplImage* left_image;
+    IplImage* right_image;
+
+    left_image = stereoCamera.getFrameColor(0);
+    right_image = stereoCamera.getFrameColor(1);
+
+    cvShowImage("left",left_image);
+    cvShowImage("right",right_image);
+
+
 
     sampleTimeout = ui->spinBoxInterval->value()*1000;
     ui->lcdNumber->display(sampleTimeout/1000);
     image_index = 0;
 
-    timer.start(1000);
+    timer.start(50);
 
 
 }
