@@ -1,9 +1,7 @@
 #ifndef STEREOCAMERA_H
 #define STEREOCAMERA_H
 
-#include<opencv/cv.h>
-#include<opencv/highgui.h>
-using namespace cv;
+#include "opencv_headers.h"
 
 class StereoCamera
 {

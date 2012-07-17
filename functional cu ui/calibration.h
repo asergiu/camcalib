@@ -4,9 +4,7 @@
 #include "cameraparameters.h"
 #include "omp.h"
 
-#include<opencv/cv.h>
-#include<opencv/highgui.h>
-using namespace cv;
+#include"opencv_headers.h"
 
 class Calibration
 {

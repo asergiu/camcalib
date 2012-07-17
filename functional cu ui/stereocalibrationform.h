@@ -4,6 +4,7 @@
 #include <QDialog>
 #include"stereocamera.h"
 #include "stereocalibration.h"
+#include"stdio.h"
 
 namespace Ui {
 class StereoCalibrationForm;

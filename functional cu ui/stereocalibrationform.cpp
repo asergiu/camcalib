@@ -2,6 +2,7 @@
 #include "ui_stereocalibrationform.h"
 
 
+
 StereoCalibrationForm::StereoCalibrationForm(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::StereoCalibrationForm)

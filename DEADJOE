@@ -1,0 +1,94 @@
+
+*** These modified files were found in JOE when it aborted on Tue Jul 17 11:57:45 2012
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+.git/COMMIT_EDITMSG
+
+*** File '.git/COMMIT_EDITMSG'
+camera capture/home/diana/work/camcalib/camcalib/functional cu ui/adjustbmparam.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/adjustbmparam.h
+/home/diana/work/camcalib/camcalib/functional cu ui/adjustbmparam.ui
+/home/diana/work/camcalib/camcalib/functional cu ui/calibration.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/calibration.h
+/home/diana/work/camcalib/camcalib/functional cu ui/cameraparameters.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/cameraparameters.h
+/home/diana/work/camcalib/camcalib/functional cu ui/correspondenceparameters.h
+/home/diana/work/camcalib/camcalib/functional cu ui/fileutils.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/fileutils.h
+/home/diana/work/camcalib/camcalib/functional cu ui/main.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/mainwindow.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/mainwindow.h
+/home/diana/work/camcalib/camcalib/functional cu ui/mainwindow.ui
+/home/diana/work/camcalib/camcalib/functional cu ui/QtStereoTest.pro
+/home/diana/work/camcalib/camcalib/functional cu ui/QtStereoTest.pro.user
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocalibration.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocalibration.h
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocalibrationform.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocalibrationform.h
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocalibrationform.ui
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocamera.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocamera.h
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocameraparameters.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocameraparameters.h
+/home/diana/work/camcalib/camcalib/functional cu ui/stereocorrespondenceparameters.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/testcalibrationdialog.cpp
+/home/diana/work/camcalib/camcalib/functional cu ui/testcalibrationdialog.
+h
+/home/diana/work/camcalib/camcalib/functional cu ui/testcalibrationdialog.ui
+/home/diana/work/camcalib/camcalib/functional cu ui/ui_adjustbmparam.h
+/home/diana/work/camcalib/camcalib/functional cu ui/ui_mainwindow.h
+/home/diana/work/camcalib/camcalib/functional cu ui/ui_stereocalibrationform.h
+/home/diana/work/camcalib/camcalib/functional cu ui/
+
+ui_testcalibrationdialog.h
+
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: diana <diana@diana.(none)>
+#
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   QtStereoTest.pro
+#	new file:   QtStereoTest.pro.user
+#	modified:   main.cpp
+#	modified:   mainwindow.cpp
+#	modified:   stereocalibration.cpp
+#	modified:   stereocalibration.h
+#	modified:   stereocamera.cpp
+#
+
+*** These modified files were found in JOE when it aborted on Tue Jul 17 12:56:28 2012
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+:wq
+
+*** File '(Unnamed)'
+.git/COMMIT_EDITMSG
+.git/COMMIT_EDITMSG
+
+*** These modified files were found in JOE when it aborted on Tue Jul 17 12:57:42 2012
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+:wq
+
+*** File '(Unnamed)'
+.git/COMMIT_EDITMSG
+.git/COMMIT_EDITMSG
+
+*** These modified files were found in JOE when it aborted on Tue Jul 17 13:11:53 2012
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+:wq
+
+*** File '(Unnamed)'
+.git/COMMIT_EDITMSG
+.git/COMMIT_EDITMSG

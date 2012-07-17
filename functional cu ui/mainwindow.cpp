@@ -90,10 +90,7 @@ void MainWindow::update_time(){
 
 void MainWindow::startCapture(){
 
-
-
     sampleTimeout = ui->spinBoxInterval->value()*1000;
-
     ui->pushButtonCalibrate->setEnabled(false);
 
 }
