@@ -12,3 +12,5 @@
 *.lai
 *.la
 *.a
+
+opencv_headers.h
