@@ -69,6 +69,8 @@ void TestCalibrationDialog::startCalib(){
     int ok = true;
     this->numberOfImages = this->ui->no_imagesSpinBox->value();
     this->imageExtension = this->ui->image_extension->text();
+    this->leftImage = this->ui->left_image_name->text();
+    this->rightImage = this->ui->right_image_name->text();
 
     if(this->leftImage.compare("")==0)
         ok = false;
@@ -145,9 +147,12 @@ void TestCalibrationDialog::startCalib(){
     }
     else{
 
+        printf("Please fill in all the required info.\n");
+        exit(2);
+
     }
 
-    // exit(0);
+
 
 }
 
