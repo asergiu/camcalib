@@ -6,6 +6,7 @@
 #include "fileutils.h"
 #include "stereocalibration.h"
 #include "adjustbmparam.h"
+#include"stereocamera.h"
 
 namespace Ui {
 class TestCalibrationDialog;
@@ -27,15 +28,17 @@ private:
     QString leftImage;
     QString rightImage;
     StereoCalibration stereoCalibration;
+    StereoCamera* stereoCamera;
+    IplImage* left_image;
+    IplImage* right_image;
+    CvMat* disparity;
 
-
-
-
-    private slots:
-        void browseImagesPath();
+private slots:
+    void browseImagesPath();
     void loadRightImage();
     void loadLeftImage();
     void startCalib();
+    void viewDisparityMap();
 };
 
 #endif // TESTCALIBRATIONDIALOG_H

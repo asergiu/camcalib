@@ -43,6 +43,8 @@ void StereoCameraParameters::setCameraParamaters2(CameraParameters* cam2_param){
 bool StereoCameraParameters::saveParameters(const char* filename){
 
     CvFileStorage* fstorage = cvOpenFileStorage(filename, NULL, CV_STORAGE_WRITE);
+    if(fstorage == NULL)
+        return false;
 
     cvWrite(fstorage, "rotationMatrix", rotation_matrix);
     cvWrite(fstorage, "transaltionVector", transaltion_vector);

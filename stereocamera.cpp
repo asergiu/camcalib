@@ -58,7 +58,6 @@ IplImage* StereoCamera::getFrame(int cameraIndex){
 
         IplImage* gray_image;
 
-        //        gray_image = cvCreateImage(mS_imageSize, IPL_DEPTH_8U, 1);
         gray_image = cvCreateImage(cvSize(mImg_images[cameraIndex]->width, mImg_images[cameraIndex]->height),IPL_DEPTH_8U, 1 );
 
         cvCvtColor(mImg_images[cameraIndex], gray_image,CV_BGR2GRAY);

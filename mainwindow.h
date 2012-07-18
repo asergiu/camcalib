@@ -33,6 +33,7 @@ private:
 private slots:
     void startCapture();
     void update_time();
+    void captureFrame();
 
 };
 

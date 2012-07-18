@@ -44,7 +44,7 @@ QString FileUtils::openDirectory(){
     return dir;
 }
 
-void FileUtils::saveFile(){
+QString FileUtils::saveFile(){
 
     QFileDialog fileDialog;
 
@@ -53,12 +53,7 @@ void FileUtils::saveFile(){
 
     QString fileName = QFileDialog::getSaveFileName(this);
 
-    QFile f(fileName);
-    f.open( QIODevice::WriteOnly );
-
-    // TODO store data in f
-
-    f.close();
+   return fileName;
 }
 
 

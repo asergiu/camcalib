@@ -50,7 +50,7 @@ int StereoCalibration::addImages(IplImage* left_image, IplImage*right_image){
         if(found && corner_count==mInt_board_width*mInt_board_height){
 
             cvFindCornerSubPix(grayImage, &mVect_image_corners[i][0], corner_count, cvSize(5,5),cvSize(-1,-1), cvTermCriteria(CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 30, 0.1 ));
-           // cvDrawChessboardCorners(image[i],  cvSize(mInt_board_width, mInt_board_height),&mVect_image_corners[i][0], corner_count, found);
+            // cvDrawChessboardCorners(image[i],  cvSize(mInt_board_width, mInt_board_height),&mVect_image_corners[i][0], corner_count, found);
             images_detected++;
 
             //cvShowImage("image corners ",image[i]);
@@ -109,7 +109,7 @@ StereoCameraParameters* StereoCalibration::calibrateCameras(/*, CvMat* _M1, CvMa
     npoints.resize(mInt_n_boards, mInt_board_width*mInt_board_height);
 
     int N = mInt_n_boards*mInt_board_width*mInt_board_height;
-    int squareSize = 25;
+    int squareSize = 20;
 
     mVect_object_points.resize(N);
     for(int i = 0; i < mInt_board_height; i++ )
@@ -131,8 +131,8 @@ StereoCameraParameters* StereoCalibration::calibrateCameras(/*, CvMat* _M1, CvMa
 
 
     double repr  =cvStereoCalibrate( &_objectPoints, &_imagePointsCam1, &_imagePointsCam2, &_npoints,&_M1, &_D1, &_M2, &_D2, mS_image_size, &_R, &_T, NULL, NULL,
-                                     cvTermCriteria(CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 100, 1e-5),
-                                     CV_CALIB_FIX_K3+CV_CALIB_FIX_ASPECT_RATIO + CV_CALIB_ZERO_TANGENT_DIST /*+ CV_CALIB_SAME_FOCAL_LENGTH*/);
+                                    cvTermCriteria(CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 100, 1e-5),
+                                    CV_CALIB_FIX_K3+CV_CALIB_FIX_ASPECT_RATIO + CV_CALIB_ZERO_TANGENT_DIST /*+ CV_CALIB_SAME_FOCAL_LENGTH*/);
 
     printf("%f ", repr);
 
@@ -195,7 +195,7 @@ void StereoCalibration::initRectifyBouguet(StereoCameraParameters* stereoCameraP
 
     cvStereoRectify( M1, M2, D1, D2, mS_image_size, stereoCameraParameters->getRotationMatrix(), stereoCameraParameters->getTranslationVector(),&_R1, &_R2, &_P1, &_P2, &_Q,0/*CV_CALIB_ZERO_DISPARITY*/ );
 
-    cvSave("qmatrix", &_Q);
+    cvSave("qmatrix.xml", &_Q);
 
     cvReleaseMat(&mx1);
     cvReleaseMat(&my1);
@@ -228,18 +228,13 @@ int StereoCalibration::rectifyImages(CvArr* leftImage, CvArr* rightImage, CvSter
     cvRemap(leftImage, leftImageRectified, mx1, my1);
     cvRemap(rightImage, rightImageRectified, mx2, my2);
 
+
     cvFindStereoCorrespondenceBM( leftImageRectified, rightImageRectified, imageDisparity, BMState);
 
     cvShowImage("image rectififed", leftImageRectified);
-    cvShowImage("disparity ", imageDisparity);
 
     cvNormalize( imageDisparity, imageDisparityNormalized, 0, 256, CV_MINMAX );
-
     cvShowImage("disparity normalized",imageDisparityNormalized);
-
-    cvReprojectImageTo3D(imageDisparity, image3D, &_Q, 1);
-
-    cvShowImage("image 3D",image3D);
 
     return 0;
 

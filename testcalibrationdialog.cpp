@@ -12,7 +12,10 @@ TestCalibrationDialog::TestCalibrationDialog(QWidget *parent) :
     this->leftImage = "";
     this->rightImage = "";
 
-
+    this->stereoCamera = 0;
+    this->left_image = 0;
+    this->right_image = 0;
+    this->disparity =0 ;
 
 }
 
@@ -71,6 +74,7 @@ void TestCalibrationDialog::startCalib(){
     this->imageExtension = this->ui->image_extension->text();
     this->leftImage = this->ui->left_image_name->text();
     this->rightImage = this->ui->right_image_name->text();
+    this->imagePath = this->ui->images_path->text();
 
     if(this->leftImage.compare("")==0)
         ok = false;
@@ -106,10 +110,19 @@ void TestCalibrationDialog::startCalib(){
             right_image_name.append(this->imageExtension);
 
 
-            IplImage *leftImage, *rightImage;
+            IplImage *leftImage = 0, *rightImage = 0;
 
             leftImage = cvLoadImage(left_image_name.toLocal8Bit().data(), 1);
+            if(leftImage==NULL){
+                fprintf(stderr,"ERROR: Could not load left image!\n");
+                exit(1);
+            }
+
             rightImage = cvLoadImage(right_image_name.toLocal8Bit().data(),1);
+            if(rightImage==NULL){
+                fprintf(stderr,"ERROR: Could not load right image!\n");
+                exit(1);
+            }
 
             int corners_ok;
 
@@ -147,7 +160,7 @@ void TestCalibrationDialog::startCalib(){
     }
     else{
 
-        printf("Please fill in all the required info.\n");
+        fprintf(stderr,"ERROR: Please fill in all the mandatory fields!!!\n");
         exit(2);
 
     }
@@ -155,5 +168,12 @@ void TestCalibrationDialog::startCalib(){
 
 
 }
+
+
+void TestCalibrationDialog::viewDisparityMap(){
+
+
+}
+
 
 

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "stereocalibration.h"
 #include "testcalibrationdialog.h"
+#include "coloureddisparitymap.h"
 
 namespace Ui {
 class AdjustBMParam;
@@ -34,12 +35,15 @@ public slots:
     virtual void updtaeUniq();
     virtual void  updateMinDisp();
     virtual void updateMaxDisp();
+    virtual bool saveParameters();
     
 private:
     Ui::AdjustBMParam *ui;
     StereoCalibration *stereoCalibration;
 
-    IplImage* rightImage,*leftImage;
+    IplImage* rightImage,*leftImage, *dispartiyImageColor;
+    ColouredDisparityMap *disparityMapColor;
+    ColouredDisparityMap::g2cd_data_t *g2cd_data;
 
 };
 

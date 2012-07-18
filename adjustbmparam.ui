@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>495</width>
-    <height>324</height>
+    <height>346</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,13 +31,20 @@
        <property name="maximum">
         <number>255</number>
        </property>
+       <property name="value">
+        <number>21</number>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QLineEdit" name="pSz"/>
+      <widget class="QLineEdit" name="pSz">
+       <property name="text">
+        <string>21</string>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
@@ -55,7 +62,7 @@
         <number>31</number>
        </property>
        <property name="value">
-        <number>1</number>
+        <number>30</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -63,7 +70,11 @@
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QLineEdit" name="pCap"/>
+      <widget class="QLineEdit" name="pCap">
+       <property name="text">
+        <string>30</string>
+       </property>
+      </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
@@ -83,13 +94,20 @@
        <property name="singleStep">
         <number>2</number>
        </property>
+       <property name="value">
+        <number>21</number>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QLineEdit" name="sadSz"/>
+      <widget class="QLineEdit" name="sadSz">
+       <property name="text">
+        <string>21</string>
+       </property>
+      </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_4">
@@ -112,7 +130,11 @@
       </widget>
      </item>
      <item row="3" column="2">
-      <widget class="QLineEdit" name="textTh"/>
+      <widget class="QLineEdit" name="textTh">
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="label_5">
@@ -135,7 +157,11 @@
       </widget>
      </item>
      <item row="4" column="2">
-      <widget class="QLineEdit" name="minDisp_2"/>
+      <widget class="QLineEdit" name="minDisp_2">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
      </item>
      <item row="5" column="0">
       <widget class="QLabel" name="label_6">
@@ -158,6 +184,9 @@
        <property name="pageStep">
         <number>16</number>
        </property>
+       <property name="value">
+        <number>6</number>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -170,7 +199,11 @@
       </widget>
      </item>
      <item row="5" column="2">
-      <widget class="QLineEdit" name="numDisp_2"/>
+      <widget class="QLineEdit" name="numDisp_2">
+       <property name="text">
+        <string>128</string>
+       </property>
+      </widget>
      </item>
      <item row="6" column="0">
       <widget class="QLabel" name="label_7">
@@ -193,7 +226,11 @@
       </widget>
      </item>
      <item row="6" column="2">
-      <widget class="QLineEdit" name="uniqRatio"/>
+      <widget class="QLineEdit" name="uniqRatio">
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
      </item>
      <item row="7" column="0">
       <widget class="QLabel" name="label_8">
@@ -213,7 +250,11 @@
       </widget>
      </item>
      <item row="7" column="2">
-      <widget class="QLineEdit" name="spkSz"/>
+      <widget class="QLineEdit" name="spkSz">
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
      </item>
      <item row="8" column="0">
       <widget class="QLabel" name="label_9">
@@ -233,7 +274,11 @@
       </widget>
      </item>
      <item row="8" column="2">
-      <widget class="QLineEdit" name="spkRag"/>
+      <widget class="QLineEdit" name="spkRag">
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -255,7 +300,7 @@
      <item>
       <widget class="QPushButton" name="tryBtn">
        <property name="text">
-        <string>Try</string>
+        <string>Save paramters</string>
        </property>
       </widget>
      </item>
@@ -265,22 +310,6 @@
  </widget>
  <resources/>
  <connections>
-  <connection>
-   <sender>tryBtn</sender>
-   <signal>clicked()</signal>
-   <receiver>AdjustBMParam</receiver>
-   <slot>tryParam()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>423</x>
-     <y>271</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>319</x>
-     <y>288</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>preFilterSz</sender>
    <signal>sliderMoved(int)</signal>
@@ -304,8 +333,8 @@
    <slot>updateFilterCap()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>224</x>
-     <y>44</y>
+     <x>306</x>
+     <y>65</y>
     </hint>
     <hint type="destinationlabel">
      <x>502</x>
@@ -320,8 +349,8 @@
    <slot>updateSADWinSz()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>266</x>
-     <y>79</y>
+     <x>306</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
      <x>54</x>
@@ -336,8 +365,8 @@
    <slot>updateTexture()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>145</x>
-     <y>99</y>
+     <x>280</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>82</x>
@@ -352,8 +381,8 @@
    <slot>updateMinDisp()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>160</x>
-     <y>123</y>
+     <x>295</x>
+     <y>164</y>
     </hint>
     <hint type="destinationlabel">
      <x>2</x>
@@ -368,8 +397,8 @@
    <slot>updateMaxDisp()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>168</x>
-     <y>146</y>
+     <x>303</x>
+     <y>197</y>
     </hint>
     <hint type="destinationlabel">
      <x>491</x>
@@ -384,8 +413,8 @@
    <slot>updtaeUniq()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>122</x>
-     <y>173</y>
+     <x>257</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
      <x>494</x>
@@ -400,8 +429,8 @@
    <slot>updateSpeckSz()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>215</x>
-     <y>196</y>
+     <x>306</x>
+     <y>263</y>
     </hint>
     <hint type="destinationlabel">
      <x>116</x>
@@ -416,8 +445,8 @@
    <slot>updateSpeckRange()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>163</x>
-     <y>233</y>
+     <x>298</x>
+     <y>296</y>
     </hint>
     <hint type="destinationlabel">
      <x>163</x>
@@ -448,8 +477,8 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>263</x>
-     <y>40</y>
+     <x>306</x>
+     <y>65</y>
     </hint>
     <hint type="destinationlabel">
      <x>338</x>
@@ -464,8 +493,8 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>285</x>
-     <y>75</y>
+     <x>306</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
      <x>341</x>
@@ -480,8 +509,8 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>246</x>
-     <y>95</y>
+     <x>306</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>394</x>
@@ -496,8 +525,8 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>222</x>
-     <y>121</y>
+     <x>306</x>
+     <y>164</y>
     </hint>
     <hint type="destinationlabel">
      <x>367</x>
@@ -512,8 +541,8 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>281</x>
-     <y>150</y>
+     <x>306</x>
+     <y>197</y>
     </hint>
     <hint type="destinationlabel">
      <x>364</x>
@@ -528,8 +557,8 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>258</x>
-     <y>174</y>
+     <x>306</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
@@ -544,8 +573,8 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>241</x>
-     <y>201</y>
+     <x>306</x>
+     <y>263</y>
     </hint>
     <hint type="destinationlabel">
      <x>345</x>
@@ -560,12 +589,28 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>234</x>
-     <y>234</y>
+     <x>306</x>
+     <y>296</y>
     </hint>
     <hint type="destinationlabel">
      <x>369</x>
      <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tryBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>AdjustBMParam</receiver>
+   <slot>saveParameters()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>436</x>
+     <y>320</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>364</x>
+     <y>321</y>
     </hint>
    </hints>
   </connection>
@@ -581,5 +626,6 @@
   <slot>updtaeUniq()</slot>
   <slot>updateMinDisp()</slot>
   <slot>updateMaxDisp()</slot>
+  <slot>saveParameters()</slot>
  </slots>
 </ui>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>423</width>
-    <height>273</height>
+    <width>455</width>
+    <height>291</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -132,24 +132,21 @@
     </layout>
    </item>
    <item>
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="realTimeDisp">
+       <property name="enabled">
+        <bool>false</bool>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>208</width>
-         <height>20</height>
-        </size>
+       <property name="text">
+        <string>Real time disparity map</string>
        </property>
-      </spacer>
+      </widget>
      </item>
-     <item row="0" column="1">
+     <item>
       <widget class="QPushButton" name="startCalib">
        <property name="text">
-        <string>Start calibration</string>
+        <string>Calibrate cameras</string>
        </property>
       </widget>
      </item>
@@ -166,8 +163,8 @@
    <slot>browseImagesPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>336</x>
-     <y>40</y>
+     <x>444</x>
+     <y>69</y>
     </hint>
     <hint type="destinationlabel">
      <x>369</x>
@@ -182,8 +179,8 @@
    <slot>loadLeftImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>326</x>
-     <y>122</y>
+     <x>444</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
      <x>358</x>
@@ -198,8 +195,8 @@
    <slot>loadRightImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>352</x>
-     <y>152</y>
+     <x>444</x>
+     <y>168</y>
     </hint>
     <hint type="destinationlabel">
      <x>378</x>
@@ -214,12 +211,28 @@
    <slot>startCalib()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>284</x>
-     <y>177</y>
+     <x>444</x>
+     <y>274</y>
     </hint>
     <hint type="destinationlabel">
      <x>150</x>
      <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>realTimeDisp</sender>
+   <signal>clicked()</signal>
+   <receiver>TestCalibrationDialog</receiver>
+   <slot>viewDisparityMap()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>103</x>
+     <y>263</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>7</x>
+     <y>257</y>
     </hint>
    </hints>
   </connection>
@@ -229,5 +242,6 @@
   <slot>loadRightImage()</slot>
   <slot>loadLeftImage()</slot>
   <slot>startCalib()</slot>
+  <slot>viewDisparityMap()</slot>
  </slots>
 </ui>

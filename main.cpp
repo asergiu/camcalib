@@ -11,15 +11,6 @@ int main(int argc, char *argv[])
 //    MainWindow w;
 //    w.show();
 
-//    StereoCalibrationForm stereoCalibForm;
-//    stereoCalibForm.show();
-
-//    AdjustBMParam adjustParam;
-//    adjustParam.show();
-
-//    StereoCalibration* stereoCalibration = new StereoCalibration();
-
-
     TestCalibrationDialog testDialog;
     testDialog.show();
 

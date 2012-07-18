@@ -13,7 +13,7 @@ public:
 public:
     FileUtils();
 
-    void saveFile();
+    QString saveFile();
     QString loadFile(QString extension);
     QString openDirectory();
     QStringList loadFiles(QString extension);

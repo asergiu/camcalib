@@ -8,6 +8,21 @@ AdjustBMParam::AdjustBMParam(QWidget *parent) :
     ui(new Ui::AdjustBMParam)
 {
     ui->setupUi(this);
+
+    disparityMapColor = new ColouredDisparityMap();
+
+    g2cd_data = (ColouredDisparityMap::g2cd_data_t *) malloc(sizeof(ColouredDisparityMap::g2cd_data_t));
+
+    if (!disparityMapColor->g2cd_calculate_look_up_table (g2cd_data))
+    {
+        fprintf(stderr,"ERROR: Could not precalculate color lookup table\n");
+
+    }
+
+    dispartiyImageColor = NULL;
+
+
+
 }
 
 AdjustBMParam::~AdjustBMParam()
@@ -147,10 +162,26 @@ void AdjustBMParam::tryParam(){
     for(int j = 0; j < leftImage->height; j += 25 )
         cvLine( pair, cvPoint(0,j),cvPoint(leftImage->width*2,j),CV_RGB(255,0,0));
 
+    cvReleaseImage(&dispartiyImageColor);
+    dispartiyImageColor = cvCreateImage (cvGetSize(leftImage),IPL_DEPTH_8U, 3);
+    if (dispartiyImageColor == NULL)
+    {
+        fprintf(stderr,"ERROR: Could not create pseudocolor image.\n");
+        exit(2);
+    }
+
+    IplImage *img, img_header;
+    img = cvGetImage(stereoCalibration->imageDisparityNormalized, &img_header);
+
+    disparityMapColor->g2cd_gray_to_chromadepth(img, this->dispartiyImageColor, this->g2cd_data);
+
+    cvShowImage("disparity coloured", dispartiyImageColor);
+
     cvNamedWindow( "rectified", 1 );
     cvShowImage( "rectified", pair );
 
     cvReleaseStereoBMState(&BMState);
+    //cvReleaseImage(&img);
 
 
 }
@@ -171,3 +202,53 @@ void AdjustBMParam::setRightImage(IplImage* right_image){
     this->rightImage = right_image;
 }
 
+bool AdjustBMParam::saveParameters(){
+
+    FileUtils* fileUtils = new FileUtils();
+
+    QString fileName = fileUtils->saveFile();
+
+    int preFilterSz = this->ui->preFilterSz->value();
+    int preFilterCap = this->ui->preFilterCap->value();
+    int sadWndSz = this->ui->SADWndSz->value();
+    int minDisp = this->ui->minDisp->value();
+    int numDisp = 16*(this->ui->numDisp->value());
+    int texture = this->ui->textureth->value();
+    int uniquness = this->ui->uniq->value();
+    int spkWndSz = this->ui->speckleWndSz->value();
+    int spkRange = this->ui->specklerange->value();
+
+    if(sadWndSz%2==0)
+        sadWndSz++;
+    if(sadWndSz<5)
+        sadWndSz = 5;
+
+    if(preFilterSz%2==0)
+        preFilterSz++;
+    if(preFilterSz<5)
+        preFilterSz = 5;
+
+
+    CvFileStorage* fstorage = cvOpenFileStorage(fileName.toLocal8Bit().data(), NULL, CV_STORAGE_WRITE);
+    if(fstorage == NULL){
+        fprintf(stderr,"ERROR: File storage NULL!\n");
+        return false;
+    }
+
+    cvWriteInt(fstorage, "preFilterSize", preFilterSz);
+    cvWriteInt(fstorage, "preFilterCap", preFilterCap);
+    cvWriteInt(fstorage, "sadWindowSize", sadWndSz);
+    cvWriteInt(fstorage, "minDisp", minDisp);
+    cvWriteInt(fstorage, "numDisp", numDisp);
+    cvWriteInt(fstorage, "textureThreshold", texture);
+    cvWriteInt(fstorage, "uniquness", uniquness);
+    cvWriteInt(fstorage, "spkWindowSize", spkWndSz);
+    cvWriteInt(fstorage,"spkRange", spkRange);
+
+    cvReleaseFileStorage(&fstorage);
+
+    delete fileUtils;
+
+    return true;
+
+}
