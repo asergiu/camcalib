@@ -18,7 +18,7 @@ public:
 
 
 private:
-    CvSize mS_imageSize;
+    CvSize mSz_imageSize;
     IplImage* mImg_images[2];
     CvCapture* mCap_captures[2];
 };

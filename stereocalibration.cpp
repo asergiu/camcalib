@@ -36,6 +36,8 @@ bool StereoCalibration::initialize(int board_width, int board_height, CvSize ima
     mx1 = my1 = 0;
     mx2 = my2 = 0;
 
+    m_bmState = 0;
+
     return true;
 }
 
@@ -251,7 +253,7 @@ void StereoCalibration::rectifyBouguet(StereoCameraParameters* stereoCameraParam
   @param BMState: param. utilizati in algoritmul de block matching
   */
 
-int StereoCalibration::computeDisparity(CvArr* leftImage, CvArr* rightImage, CvStereoBMState* BMState){
+int StereoCalibration::computeDisparity(CvArr* leftImage, CvArr* rightImage){
 
     if(!leftImageRectified)
         leftImageRectified =  cvCreateMat(mS_image_size.height, mS_image_size.width, CV_8U );
@@ -266,7 +268,9 @@ int StereoCalibration::computeDisparity(CvArr* leftImage, CvArr* rightImage, CvS
     cvRemap(rightImage, rightImageRectified, mx2, my2);
 
 
-    cvFindStereoCorrespondenceBM( leftImageRectified, rightImageRectified, imageDisparity, BMState);
+   // cvFindStereoCorrespondenceBM( leftImageRectified, rightImageRectified, imageDisparity, bmState);
+
+     cvFindStereoCorrespondenceBM( leftImageRectified, rightImageRectified, imageDisparity, m_bmState);
 
     cvShowImage("image rectififed", leftImageRectified);
 
@@ -297,5 +301,11 @@ void StereoCalibration::printMatrix(CvMat* mat){
 CvSize StereoCalibration::getImageSize(){
 
     return this->mS_image_size;
+}
+
+void StereoCalibration::setBMState(CvStereoBMState* bmState){
+
+    this->m_bmState = bmState;
+
 }
 

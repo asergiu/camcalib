@@ -62,4 +62,6 @@ int CameraParameters::loadParameters(const char* filename){
 
     cvReleaseFileStorage(&readParameters);
 
+    return 0;
+
 }

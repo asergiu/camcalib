@@ -3,6 +3,7 @@
 #include "stereocalibrationform.h"
 #include "adjustbmparam.h"
 #include "testcalibrationdialog.h"
+#include "tabbedmenudialog.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,7 +15,8 @@ int main(int argc, char *argv[])
     TestCalibrationDialog testDialog;
     testDialog.show();
 
-
+    TabbedMenuDialog tabbedMenuDialog;
+    tabbedMenuDialog.show();
 
     return a.exec();
 }

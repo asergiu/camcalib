@@ -7,7 +7,7 @@ StereoCamera::StereoCamera()
 
 StereoCamera::StereoCamera(CvSize size)
 {
-    mS_imageSize =  size;
+    mSz_imageSize =  size;
 
 }
 

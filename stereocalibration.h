@@ -18,8 +18,9 @@ public:
     void rectifyBouguet(StereoCameraParameters* stereoCameraParameters);
     // rectify_mode 1 = Harley, 2 = Bouguet
 
-    int computeDisparity(CvArr* leftImage, CvArr* rightImage, CvStereoBMState* BMState);
+    int computeDisparity(CvArr* leftImage, CvArr* rightImage);
     CvSize getImageSize();
+    void setBMState(CvStereoBMState* bmState);
 
     void printMatrix(CvMat* i2);
 
@@ -29,6 +30,8 @@ public:
 
     CvMat  *imageDisparity, *imageDisparityNormalized;
     CvMat* image3D;
+
+    CvStereoBMState* m_bmState;
 
 private:
 

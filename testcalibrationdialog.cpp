@@ -156,7 +156,7 @@ void TestCalibrationDialog::startCalib(){
 
         adjustParam->show();
 
-        //  this->ui->realTimeDisp->setEnabled(true);
+        this->ui->realTimeDisp->setEnabled(true);
 
 
     }
@@ -174,7 +174,7 @@ void TestCalibrationDialog::startCalib(){
 
 void TestCalibrationDialog::viewDisparityMap(){
 
-    //   this->ui->realTimeDisp->setEnabled(false);
+    this->ui->realTimeDisp->setEnabled(false);
 
     RTDisparityMapDialog *rtDisparityMapDialog;
     rtDisparityMapDialog =  new RTDisparityMapDialog(this);
