@@ -140,7 +140,7 @@ void TestCalibrationDialog::startCalib(){
 
 
         StereoCameraParameters* stereoCameraParameters = stereoCalibration.calibrateCameras();
-        stereoCalibration.initRectifyBouguet(stereoCameraParameters);
+        stereoCalibration.rectifyBouguet(stereoCameraParameters);
 
         leftImage.replace(QString("\\"), QString("/"));
         rightImage.replace(QString("\\"), QString("/"));

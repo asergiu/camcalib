@@ -110,7 +110,7 @@ void RTDisparityMapDialog::update_time(){
         cvCvtColor(mImg_images[1], gray_image_right,CV_BGR2GRAY);
 
         //   m_stereoCalibration->rectifyImages(mImg_images[0], mImg_images[1], m_BMState);
-        m_stereoCalibration->rectifyImages(gray_image_left, gray_image_right,  m_BMState);
+        m_stereoCalibration->computeDisparity(gray_image_left, gray_image_right,  m_BMState);
         mMat_disparity = m_stereoCalibration->imageDisparityNormalized;
 
         cvShowImage("disparity", mMat_disparity);

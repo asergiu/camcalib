@@ -190,7 +190,7 @@ StereoCameraParameters* StereoCalibration::calibrateCameras(){
   Aceasta metoda efectueaza rectificarea prin metoda Bouguet.
   @param: stereoCameraParameters informatiile despre sistemul stereo: matricea de rotatie si de translatie dintre camere (obtinute in urma pasului de calibrare stereo)
   */
-void StereoCalibration::initRectifyBouguet(StereoCameraParameters* stereoCameraParameters){
+void StereoCalibration::rectifyBouguet(StereoCameraParameters* stereoCameraParameters){
 
     CameraParameters* camera1Parameters;
     CameraParameters* camera2Parameters;
@@ -251,7 +251,7 @@ void StereoCalibration::initRectifyBouguet(StereoCameraParameters* stereoCameraP
   @param BMState: param. utilizati in algoritmul de block matching
   */
 
-int StereoCalibration::rectifyImages(CvArr* leftImage, CvArr* rightImage, CvStereoBMState* BMState){
+int StereoCalibration::computeDisparity(CvArr* leftImage, CvArr* rightImage, CvStereoBMState* BMState){
 
     if(!leftImageRectified)
         leftImageRectified =  cvCreateMat(mS_image_size.height, mS_image_size.width, CV_8U );

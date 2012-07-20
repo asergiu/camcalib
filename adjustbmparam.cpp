@@ -147,7 +147,7 @@ void AdjustBMParam::tryParam(){
     BMState->speckleWindowSize = spkWndSz;
     BMState->speckleRange = spkRange;
 
-    stereoCalibration->rectifyImages(leftImage, rightImage, BMState);
+    stereoCalibration->computeDisparity(leftImage, rightImage, BMState);
 
     CvMat* pair = cvCreateMat(leftImage->height, leftImage->width*2, CV_8UC3 );
     CvMat part;

@@ -15,10 +15,10 @@ public:
     int addImages(const char* left_image, const char* right_image);
     StereoCameraParameters* calibrateCameras( /*, CvMat* _M1 = 0, CvMat* _M2 = 0, CvMat* _D1 = 0, CvMat* _D2 = 0*/);
     void getInfoFromImages();
-    void initRectifyBouguet(StereoCameraParameters* stereoCameraParameters);
+    void rectifyBouguet(StereoCameraParameters* stereoCameraParameters);
     // rectify_mode 1 = Harley, 2 = Bouguet
 
-    int rectifyImages(CvArr* leftImage, CvArr* rightImage, CvStereoBMState* BMState);
+    int computeDisparity(CvArr* leftImage, CvArr* rightImage, CvStereoBMState* BMState);
     CvSize getImageSize();
 
     void printMatrix(CvMat* i2);
