@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>495</width>
-    <height>346</height>
+    <width>551</width>
+    <height>365</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -317,7 +317,7 @@
    <slot>updateFilterSize()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>156</x>
+     <x>148</x>
      <y>18</y>
     </hint>
     <hint type="destinationlabel">
@@ -333,11 +333,11 @@
    <slot>updateFilterCap()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>65</y>
     </hint>
     <hint type="destinationlabel">
-     <x>502</x>
+     <x>222</x>
      <y>49</y>
     </hint>
    </hints>
@@ -349,7 +349,7 @@
    <slot>updateSADWinSz()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>98</y>
     </hint>
     <hint type="destinationlabel">
@@ -365,7 +365,7 @@
    <slot>updateTexture()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>280</x>
+     <x>148</x>
      <y>131</y>
     </hint>
     <hint type="destinationlabel">
@@ -381,7 +381,7 @@
    <slot>updateMinDisp()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>295</x>
+     <x>148</x>
      <y>164</y>
     </hint>
     <hint type="destinationlabel">
@@ -397,11 +397,11 @@
    <slot>updateMaxDisp()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>303</x>
+     <x>148</x>
      <y>197</y>
     </hint>
     <hint type="destinationlabel">
-     <x>491</x>
+     <x>222</x>
      <y>175</y>
     </hint>
    </hints>
@@ -413,11 +413,11 @@
    <slot>updtaeUniq()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>257</x>
+     <x>148</x>
      <y>230</y>
     </hint>
     <hint type="destinationlabel">
-     <x>494</x>
+     <x>222</x>
      <y>225</y>
     </hint>
    </hints>
@@ -429,7 +429,7 @@
    <slot>updateSpeckSz()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>263</y>
     </hint>
     <hint type="destinationlabel">
@@ -445,7 +445,7 @@
    <slot>updateSpeckRange()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>298</x>
+     <x>148</x>
      <y>296</y>
     </hint>
     <hint type="destinationlabel">
@@ -461,11 +461,11 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>194</x>
+     <x>148</x>
      <y>22</y>
     </hint>
     <hint type="destinationlabel">
-     <x>326</x>
+     <x>222</x>
      <y>5</y>
     </hint>
    </hints>
@@ -477,11 +477,11 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>65</y>
     </hint>
     <hint type="destinationlabel">
-     <x>338</x>
+     <x>222</x>
      <y>32</y>
     </hint>
    </hints>
@@ -493,11 +493,11 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>341</x>
+     <x>222</x>
      <y>60</y>
     </hint>
    </hints>
@@ -509,11 +509,11 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>131</y>
     </hint>
     <hint type="destinationlabel">
-     <x>394</x>
+     <x>222</x>
      <y>82</y>
     </hint>
    </hints>
@@ -525,11 +525,11 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>164</y>
     </hint>
     <hint type="destinationlabel">
-     <x>367</x>
+     <x>222</x>
      <y>109</y>
     </hint>
    </hints>
@@ -541,11 +541,11 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>197</y>
     </hint>
     <hint type="destinationlabel">
-     <x>364</x>
+     <x>222</x>
      <y>135</y>
     </hint>
    </hints>
@@ -557,11 +557,11 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>230</y>
     </hint>
     <hint type="destinationlabel">
-     <x>339</x>
+     <x>222</x>
      <y>164</y>
     </hint>
    </hints>
@@ -573,11 +573,11 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>263</y>
     </hint>
     <hint type="destinationlabel">
-     <x>345</x>
+     <x>222</x>
      <y>189</y>
     </hint>
    </hints>
@@ -589,11 +589,11 @@
    <slot>tryParam()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>306</x>
+     <x>148</x>
      <y>296</y>
     </hint>
     <hint type="destinationlabel">
-     <x>369</x>
+     <x>222</x>
      <y>246</y>
     </hint>
    </hints>
@@ -605,11 +605,11 @@
    <slot>saveParameters()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>436</x>
-     <y>320</y>
+     <x>418</x>
+     <y>346</y>
     </hint>
     <hint type="destinationlabel">
-     <x>364</x>
+     <x>222</x>
      <y>321</y>
     </hint>
    </hints>

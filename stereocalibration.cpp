@@ -7,29 +7,46 @@ StereoCalibration::StereoCalibration()
 
 bool StereoCalibration::initialize(int board_width, int board_height, CvSize image_size){
 
+    //dimensiunea tablei de sah (colturi interioare)
     this->mInt_board_height = board_height;
     this->mInt_board_width = board_width;
 
+    //dimensiunea imaginii
     this->mS_image_size = image_size;
 
+    //numarul de table de sah care vor fi folosite in calibrarea
     this->mInt_n_boards = 0;
 
+    //colturile gasite pe o imagine
     mVect_image_corners[0].resize(mInt_board_width*mInt_board_height);
     mVect_image_corners[1].resize(mInt_board_width*mInt_board_height);
 
+    //imaginea stanga si dreapta rectificata
     leftImageRectified = 0;
     rightImageRectified = 0;
+    //matricea cu valorile pentru adancime
     image3D = 0;
 
+    //disparitatea pentru imaginile leftImageRectified si rightImageRectified
     imageDisparity = 0;
+    //disparitatea normalizata
     imageDisparityNormalized = 0;
 
+    //mapruile pentru remap
     mx1 = my1 = 0;
     mx2 = my2 = 0;
 
     return true;
 }
 
+/**
+  Se adauga doua imagini pentru a fi folosite in pasul de calibrare.
+   -  se cauta colturile tablei de sah pentru fiecare dintre cele doua imagini date ca param
+  @param leftImage: imaginea de la camera stanga
+  @param  rightImage: imaginea de la camera dreapta
+  @return numarul de imagini pentru care s-au gasit toate colturile tablei de sah
+
+  */
 int StereoCalibration::addImages(IplImage* left_image, IplImage*right_image){
 
     IplImage* image[2] = {left_image, right_image};
@@ -73,6 +90,10 @@ int StereoCalibration::addImages(const char* left_image_name, const char* right_
 
 }
 
+/**
+  Aceasta metoda se apleaza in cazul in care metoda addImages  (@see addImages(IplImage* left_image, IplImage*right_image)) returneaza valoarea 2 (s-au gasit toate colturile tablei de sah in ambele imagini)
+  Se retin informatiile despre coltuilegasit in imagini pentru a fi folosite in pasul de calibrare
+  */
 void StereoCalibration::getInfoFromImages(){
 
     for(int i = 0;i < 2; i++){
@@ -86,7 +107,12 @@ void StereoCalibration::getInfoFromImages(){
 
 }
 
-StereoCameraParameters* StereoCalibration::calibrateCameras(/*, CvMat* _M1, CvMat* _M2, CvMat* _D1, CvMat* _D2*/){
+/**
+  Aceasta metoda efectueaza procesul de calibrare stereo
+  @return  informatiile obtinute in urma pasului de calibrare
+
+  */
+StereoCameraParameters* StereoCalibration::calibrateCameras(){
 
     // M1 camera matrix 1, M2 camera matrix 2, D1 distorsiuni cam 1, D2 distorsiuni cam 2
     // R rotation matrix, T translation vector, E matricea esentiala, F matricea fundamentala
@@ -131,8 +157,8 @@ StereoCameraParameters* StereoCalibration::calibrateCameras(/*, CvMat* _M1, CvMa
 
 
     double repr  =cvStereoCalibrate( &_objectPoints, &_imagePointsCam1, &_imagePointsCam2, &_npoints,&_M1, &_D1, &_M2, &_D2, mS_image_size, &_R, &_T, NULL, NULL,
-                                    cvTermCriteria(CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 100, 1e-5),
-                                    CV_CALIB_FIX_K3+CV_CALIB_FIX_ASPECT_RATIO + CV_CALIB_ZERO_TANGENT_DIST /*+ CV_CALIB_SAME_FOCAL_LENGTH*/);
+                                     cvTermCriteria(CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 100, 1e-5),
+                                     CV_CALIB_FIX_K3+CV_CALIB_FIX_ASPECT_RATIO + CV_CALIB_ZERO_TANGENT_DIST /*+ CV_CALIB_SAME_FOCAL_LENGTH*/);
 
     printf("%f ", repr);
 
@@ -160,6 +186,10 @@ StereoCameraParameters* StereoCalibration::calibrateCameras(/*, CvMat* _M1, CvMa
 
 }
 
+/**
+  Aceasta metoda efectueaza rectificarea prin metoda Bouguet.
+  @param: stereoCameraParameters informatiile despre sistemul stereo: matricea de rotatie si de translatie dintre camere (obtinute in urma pasului de calibrare stereo)
+  */
 void StereoCalibration::initRectifyBouguet(StereoCameraParameters* stereoCameraParameters){
 
     CameraParameters* camera1Parameters;
@@ -214,6 +244,13 @@ void StereoCalibration::initRectifyBouguet(StereoCameraParameters* stereoCameraP
 }
 
 
+/**
+  Aceasta metoda determina harta cu disparitatile (disparity map) si harta de adancime (depth map) pentru o pereche de imagini de la sistemul stereo
+  @param leftImage: imaginea de la camera stanga
+  @param rightImage: imaginea de la camera dreapta
+  @param BMState: param. utilizati in algoritmul de block matching
+  */
+
 int StereoCalibration::rectifyImages(CvArr* leftImage, CvArr* rightImage, CvStereoBMState* BMState){
 
     if(!leftImageRectified)
@@ -256,4 +293,9 @@ void StereoCalibration::printMatrix(CvMat* mat){
 
 }
 
+
+CvSize StereoCalibration::getImageSize(){
+
+    return this->mS_image_size;
+}
 

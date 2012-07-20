@@ -19,6 +19,7 @@ public:
     // rectify_mode 1 = Harley, 2 = Bouguet
 
     int rectifyImages(CvArr* leftImage, CvArr* rightImage, CvStereoBMState* BMState);
+    CvSize getImageSize();
 
     void printMatrix(CvMat* i2);
 

@@ -7,6 +7,7 @@
 #include "stereocalibration.h"
 #include "adjustbmparam.h"
 #include"stereocamera.h"
+#include "rtdisparitymapdialog.h"
 
 namespace Ui {
 class TestCalibrationDialog;

@@ -149,12 +149,14 @@ void TestCalibrationDialog::startCalib(){
         IplImage* right_image_rectified = cvLoadImage(this->rightImage.toLocal8Bit().data(),0);
 
 
-        AdjustBMParam* adjustParam = new AdjustBMParam();
+        AdjustBMParam* adjustParam = new AdjustBMParam(this);
         adjustParam->setStereoCalibration(&stereoCalibration);
         adjustParam->setLeftImage(left_image_rectified);
         adjustParam->setRightImage(right_image_rectified);
 
         adjustParam->show();
+
+        //  this->ui->realTimeDisp->setEnabled(true);
 
 
     }
@@ -171,6 +173,20 @@ void TestCalibrationDialog::startCalib(){
 
 
 void TestCalibrationDialog::viewDisparityMap(){
+
+    //   this->ui->realTimeDisp->setEnabled(false);
+
+    RTDisparityMapDialog *rtDisparityMapDialog;
+    rtDisparityMapDialog =  new RTDisparityMapDialog(this);
+    rtDisparityMapDialog->startTimer();
+
+    rtDisparityMapDialog->setStereocalibration(&this->stereoCalibration);
+
+    CvStereoBMState* bmState = cvCreateStereoBMState(0, 64);
+    rtDisparityMapDialog->setBMState(bmState);
+    rtDisparityMapDialog->setImageSize(this->stereoCalibration.getImageSize());
+    rtDisparityMapDialog->show();
+
 
 
 }
