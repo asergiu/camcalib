@@ -7,6 +7,14 @@
 class StereoCameraParameters
 {
 public:
+
+    static const char* FUNDAMENTAL_MAT_TAG;
+    static const char* ESSENTIAL_MAT_TAG;
+    static const char* TRANSALTION_VECT_TAG;
+    static const char* ROTATION_MAT_TAG;
+    static const char* CAM1_PARM_TAG;
+    static const char* CAM2_PARAM_TAG;
+
     StereoCameraParameters();
     ~StereoCameraParameters();
 
@@ -22,7 +30,7 @@ public:
     CameraParameters* getCamera2Parameters();
 
     bool saveParameters(const char* filename);
-    bool loadParameters(char* fileName);
+    bool loadParameters(const char* fileName);
 
     CvMat* getFundamentalMatrix();
     CvMat* getRotationMatrix();
@@ -34,8 +42,6 @@ private:
 
     CvMat* rotation_matrix;
     CvMat* transaltion_vector;
-
-    CvMat* imageDepth;
 
     CameraParameters *cameraParameters1;
     CameraParameters *cameraParameters2;

@@ -1,14 +1,24 @@
 #include "cameraparameters.h"
 
+const char* CameraParameters::CAMERA_MATRIX_TAG = "cameraMatrix";
+const char* CameraParameters::DISTORTION_COEF_TAG = "distortionCoeff";
+
 CameraParameters::CameraParameters()
 {
+    this->m_mat_camera_matrix = 0;
+    this->m_mat_distortion_coeff = 0;
 }
 
-CameraParameters::CameraParameters(CvMat* cameraMatrix, CvMat* distortionCoef, double reprojectionError){
+CameraParameters::~CameraParameters(){
+
+    cvReleaseMat(&m_mat_camera_matrix);
+    cvReleaseMat(&m_mat_distortion_coeff);
+}
+
+CameraParameters::CameraParameters(CvMat* cameraMatrix, CvMat* distortionCoef){
 
     this->m_mat_camera_matrix = cvCloneMat(cameraMatrix);
     this->m_mat_distortion_coeff = cvCloneMat(distortionCoef);
-    this->m_d_reprojection_error = reprojectionError;
 
 }
 
@@ -23,45 +33,44 @@ CvMat* CameraParameters::getDistortionCoef(){
 
 }
 
-double CameraParameters::getReprojectionError(){
-
-    return this->m_d_reprojection_error;
-
+void CameraParameters::setCameraMatrix(CvMat* cameraMatrix){
+    this->m_mat_camera_matrix =  cvCloneMat(cameraMatrix);
 }
 
-void CameraParameters::setCameraMatrix(CvMat* camera_matrix){
-    this->m_mat_camera_matrix =  cvCloneMat(camera_matrix);
+void CameraParameters::setDistortionVector(CvMat* distortionVector){
+    this->m_mat_distortion_coeff = cvCloneMat(distortionVector);
 }
 
-void CameraParameters::setDistortionVector(CvMat* distortion_vector){
-    this->m_mat_distortion_coeff = cvCloneMat(distortion_vector);
-}
+bool CameraParameters::saveParameters(const char* filename){
 
-void CameraParameters::saveParameters(const char* filename){
+    CvFileStorage* fstorage = 0;
+    fstorage = cvOpenFileStorage(filename, NULL, CV_STORAGE_WRITE);
 
-    CvFileStorage* fstorage = cvOpenFileStorage(filename, NULL, CV_STORAGE_WRITE);
+    if(!fstorage)
+        return false;
 
-    cvWrite(fstorage, "cameraMatrix", m_mat_camera_matrix);
-    cvWrite(fstorage, "distortionCoeff", m_mat_distortion_coeff);
-    cvWriteReal(fstorage, "reprojectionError", this->m_d_reprojection_error);
+    cvWrite(fstorage, CAMERA_MATRIX_TAG, m_mat_camera_matrix);
+    cvWrite(fstorage, DISTORTION_COEF_TAG, m_mat_distortion_coeff);
 
     cvReleaseFileStorage(&fstorage);
 
+    return true;
+
 }
 
-int CameraParameters::loadParameters(const char* filename){
+bool CameraParameters::loadParameters(const char* filename){
 
-    CvFileStorage* readParameters = 0;
-    readParameters =  cvOpenFileStorage(filename, NULL,  CV_STORAGE_READ);
+    CvFileStorage* fstorage = 0;
+    fstorage =  cvOpenFileStorage(filename, NULL,  CV_STORAGE_READ);
 
-    if(!readParameters)
-        return -1;
+    if(!fstorage)
+        return false;
 
-    this->m_mat_camera_matrix = cvCloneMat( (CvMat*) cvReadByName(readParameters, 0, "distorsion1"));
-    this->m_mat_distortion_coeff = cvCloneMat((CvMat*) cvReadByName(readParameters, 0, "distortion"));
+    this->m_mat_camera_matrix = cvCloneMat( (CvMat*) cvReadByName(fstorage, 0, CAMERA_MATRIX_TAG));
+    this->m_mat_distortion_coeff = cvCloneMat((CvMat*) cvReadByName(fstorage, 0, DISTORTION_COEF_TAG));
 
-    cvReleaseFileStorage(&readParameters);
+    cvReleaseFileStorage(&fstorage);
 
-    return 0;
+    return true;
 
 }
