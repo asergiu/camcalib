@@ -16,11 +16,11 @@ class TestCalibrationDialog;
 class TestCalibrationDialog : public QDialog
 {
     Q_OBJECT
-    
+
 public:
     explicit TestCalibrationDialog(QWidget *parent = 0);
     ~TestCalibrationDialog();
-    
+
 private:
     Ui::TestCalibrationDialog *ui;
     QString imagePath;

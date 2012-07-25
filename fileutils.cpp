@@ -37,7 +37,7 @@ QStringList FileUtils::loadFiles(QString extension){
 
 QString FileUtils::openDirectory(){
     QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
-                                                    "/home",
+                                                    QDir::currentPath(),
                                                     QFileDialog::ShowDirsOnly
                                                     | QFileDialog::DontResolveSymlinks);
 
