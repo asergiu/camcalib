@@ -12,33 +12,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->ui->pushButtonCalibrate->setEnabled(true);
 
-    //    leftCapture = cvCreateCameraCapture(0);
-    //    rightCapture = cvCreateCameraCapture(1);
-
-    camera_ready = stereoCamera.initialize();
-    printf("%d", camera_ready);
-
-    stereoCamera.capture();
-
-    IplImage* left_image;
-    IplImage* right_image;
-
-    left_image = stereoCamera.getFrameColor(0);
-    right_image = stereoCamera.getFrameColor(1);
-
-    cvShowImage("left",left_image);
-    cvShowImage("right",right_image);
-
-
-
+    camera_ready = false;
     sampleTimeout = ui->spinBoxInterval->value()*1000;
     ui->lcdNumber->display(sampleTimeout/1000);
     image_index = 0;
-
-    timer.start(50);
-
-
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -49,10 +28,15 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::initialize() {
+    if(!camera_ready)
+        camera_ready = stereoCamera.initialize(this->ui->left_camera_index_spinBox->value(), this->ui->right_camera_index_spinBox->value());
+}
+
+
 void MainWindow::update_time(){
 
     if(camera_ready == true ){
-
         stereoCamera.capture();
 
         IplImage* left_image;
@@ -64,39 +48,43 @@ void MainWindow::update_time(){
         cvShowImage("left",left_image);
         cvShowImage("right",right_image);
 
-        if(sampleTimeout < 0){
-            //            image_index++;
-            //            sampleTimeout = ui->spinBoxInterval->value()*1000;
+        if(sampleTimeout < 0) {
+            sampleTimeout = ui->spinBoxInterval->value()*1000;
+            if(!ui->pushButtonCalibrate->isEnabled()) {
+                image_index++;
 
-            //            char* left_image_name = new char[100];
-            //            char* right_image_name = new char[100];
+                char* left_image_name = new char[100];
+                char* right_image_name = new char[100];
 
-            //            sprintf(left_image_name, "left%d.jpg", image_index);
-            //            sprintf(right_image_name, "right%d.jpg", image_index);
+                sprintf(left_image_name, "left%d.tif", image_index);
+                sprintf(right_image_name, "right%d.tif", image_index);
 
-            //            cvSaveImage(left_image_name, left_image);
-            //            cvSaveImage(right_image_name, right_image);
+                cvSaveImage(left_image_name, left_image);
+                cvSaveImage(right_image_name, right_image);
 
-            //            delete left_image_name;
-            //            delete right_image_name;
+                sprintf(left_image_name, "left%d.bmp", image_index);
+                sprintf(right_image_name, "right%d.bmp", image_index);
 
+                cvSaveImage(left_image_name, left_image);
+                cvSaveImage(right_image_name, right_image);
 
-        }else{
+                delete left_image_name;
+                delete right_image_name;
+            }
+        } else {
             ui->lcdNumber->display(sampleTimeout/1000);
             sampleTimeout -= timer.interval();
-
         }
     }
+
 }
+
 
 void MainWindow::startCapture(){
 
-    sampleTimeout = ui->spinBoxInterval->value()*1000;
-    ui->pushButtonCalibrate->setEnabled(false);
-
-}
-
-void MainWindow::captureFrame(){
+    initialize();
+    stereoCamera.capture();
+    timer.start(50);
 
     IplImage* left_image;
     IplImage* right_image;
@@ -104,9 +92,31 @@ void MainWindow::captureFrame(){
     left_image = stereoCamera.getFrameColor(0);
     right_image = stereoCamera.getFrameColor(1);
 
+    cvShowImage("left",left_image);
+    cvShowImage("right",right_image);
+
+    sampleTimeout = ui->spinBoxInterval->value()*1000;
+    ui->pushButtonCalibrate->setEnabled(false);
+
+}
+
+
+void MainWindow::captureFrame(){
+
+    IplImage* left_image;
+    IplImage* right_image;
+
+    initialize();
+    stereoCamera.capture();
+    timer.start(50);
+
+    left_image = stereoCamera.getFrameColor(0);
+    right_image = stereoCamera.getFrameColor(1);
+
+    cvShowImage("left",left_image);
+    cvShowImage("right",right_image);
 
     image_index++;
-    sampleTimeout = ui->spinBoxInterval->value()*1000;
 
     char* left_image_name = new char[100];
     char* right_image_name = new char[100];
@@ -147,9 +157,6 @@ void MainWindow::captureFrame(){
 
     delete left_image_name2;
     delete right_image_name2;
-
-
-
 }
 
 

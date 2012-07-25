@@ -27,10 +27,10 @@ void StereoCamera::capture(){
 
 }
 
-bool StereoCamera::initialize(){
+bool StereoCamera::initialize(int left_index, int right_index){
 
-    mCap_captures[0] = cvCaptureFromCAM(0);
-    mCap_captures[1] = cvCaptureFromCAM(1);
+    mCap_captures[0] = cvCaptureFromCAM(left_index);
+    mCap_captures[1] = cvCaptureFromCAM(right_index);
 
     if( mCap_captures[0] && mCap_captures[1]){
 

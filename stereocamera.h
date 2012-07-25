@@ -11,7 +11,7 @@ public:
     ~StereoCamera();
 
 
-    bool initialize();
+    bool initialize(int left_index, int right_index);
     void capture();
     IplImage* getFrame(int cameraIndex);
     IplImage* getFrameColor(int cameraIndex);

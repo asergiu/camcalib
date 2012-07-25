@@ -3,7 +3,7 @@
 
 
 
-StereoCalibrationForm::StereoCalibrationForm(QWidget *parent) :
+StereoCalibrationForm::StereoCalibrationForm(QWidget *parent, int left_index, int right_index) :
     QDialog(parent),
     ui(new Ui::StereoCalibrationForm)
 {
@@ -15,7 +15,7 @@ StereoCalibrationForm::StereoCalibrationForm(QWidget *parent) :
     stereoCamera = new StereoCamera();
     stereoCalibration = new StereoCalibration();
 
-    stereoCamera->initialize();
+    stereoCamera->initialize(left_index, right_index);
     ui->setupUi(this);
 }
 

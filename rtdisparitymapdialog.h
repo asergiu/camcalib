@@ -16,10 +16,10 @@ class RTDisparityMapDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit RTDisparityMapDialog(QWidget *parent = 0);
+    explicit RTDisparityMapDialog(QWidget *parent = 0, int left_index = 0, int right_index = 1);
     ~RTDisparityMapDialog();
 
-    bool initialize();
+    bool initialize(int left_index, int right_index);
 
     void setStereocalibration(StereoCalibration* m_stereoCalibration);
     void setBMState(CvStereoBMState* bmState);

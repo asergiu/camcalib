@@ -23,7 +23,7 @@ public slots:
     virtual void calibrateCameras();
     
 public:
-    explicit StereoCalibrationForm(QWidget *parent = 0);
+    explicit StereoCalibrationForm(QWidget *parent = 0, int left_index = 0, int right_index = 1);
     ~StereoCalibrationForm();
 
 

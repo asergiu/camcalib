@@ -1,7 +1,7 @@
 #include "rtdisparitymapdialog.h"
 #include "ui_rtdisparitymapdialog.h"
 
-RTDisparityMapDialog::RTDisparityMapDialog(QWidget *parent) :
+RTDisparityMapDialog::RTDisparityMapDialog(QWidget *parent, int left_index, int right_index) :
     QDialog(parent),
     ui(new Ui::RTDisparityMapDialog)
 {
@@ -16,7 +16,7 @@ RTDisparityMapDialog::RTDisparityMapDialog(QWidget *parent) :
     mMat_disparity = 0;
     m_BMState = 0;
 
-    bool camera_ready = initialize();
+    bool camera_ready = initialize(left_index, right_index);
     if(!camera_ready){
         fprintf(stderr, "ERROR: Could not start camera capture!");
         exit(1);
@@ -53,10 +53,10 @@ RTDisparityMapDialog::~RTDisparityMapDialog()
 
 
 
-bool RTDisparityMapDialog::initialize(){
+bool RTDisparityMapDialog::initialize(int left_index, int right_index){
 
-    mCap_captures[0] = cvCaptureFromCAM(0);
-    mCap_captures[1] = cvCaptureFromCAM(1);
+    mCap_captures[0] = cvCaptureFromCAM(left_index);
+    mCap_captures[1] = cvCaptureFromCAM(right_index);
 
     if( mCap_captures[0] && mCap_captures[1]){
 
