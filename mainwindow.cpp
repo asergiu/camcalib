@@ -62,8 +62,8 @@ void MainWindow::update_time(){
                 cvSaveImage(left_image_name, left_image);
                 cvSaveImage(right_image_name, right_image);
 
-                sprintf(left_image_name, "left%d.bmp", image_index);
-                sprintf(right_image_name, "right%d.bmp", image_index);
+                sprintf(left_image_name, "left%d.png", image_index);
+                sprintf(right_image_name, "right%d.png", image_index);
 
                 cvSaveImage(left_image_name, left_image);
                 cvSaveImage(right_image_name, right_image);
