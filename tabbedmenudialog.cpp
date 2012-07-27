@@ -149,7 +149,8 @@ void TabbedMenuDialog::startCalib()
 
 
         StereoCameraParameters* stereoCameraParameters = m_stereoCalibration.calibrateCameras();
-        m_stereoCalibration.rectifyBouguet(stereoCameraParameters);
+//        m_stereoCalibration.rectifyBouguet(stereoCameraParameters);
+        m_stereoCalibration.rectifyHartley(stereoCameraParameters);
 
         m_leftImage.replace(QString("\\"), QString("/"));
         m_rightImage.replace(QString("\\"), QString("/"));

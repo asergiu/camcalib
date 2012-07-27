@@ -1,6 +1,8 @@
 #ifndef STEREOCALIBRATION_H
 #define STEREOCALIBRATION_H
 
+#include <iostream>
+
 #include "stereocameraparameters.h"
 
 #include "opencv_headers.h"
@@ -16,12 +18,14 @@ public:
     StereoCameraParameters* calibrateCameras( /*, CvMat* _M1 = 0, CvMat* _M2 = 0, CvMat* _D1 = 0, CvMat* _D2 = 0*/);
     void getInfoFromImages();
     void rectifyBouguet(StereoCameraParameters* stereoCameraParameters);
+    void rectifyHartley(StereoCameraParameters* stereoCameraParameters);
     // rectify_mode 1 = Harley, 2 = Bouguet
 
     int computeDisparity(CvArr* leftImage, CvArr* rightImage);
     CvSize getImageSize();
     void setBMState(CvStereoBMState* bmState);
 
+    void calibrationQualityCheck(CvMat _imagePointsCam1, CvMat _imagePointsCam2, StereoCameraParameters* stereoCameraParameters);
     void printMatrix(CvMat* i2);
 
     //TODO getter si setter si variabilele sa fie private

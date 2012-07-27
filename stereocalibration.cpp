@@ -158,11 +158,21 @@ StereoCameraParameters* StereoCalibration::calibrateCameras(){
     cvZero(&_D2);
 
 
-    double repr  =cvStereoCalibrate( &_objectPoints, &_imagePointsCam1, &_imagePointsCam2, &_npoints,&_M1, &_D1, &_M2, &_D2, mS_image_size, &_R, &_T, NULL, NULL,
-                                     cvTermCriteria(CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 100, 1e-5),
-                                     CV_CALIB_FIX_K3+CV_CALIB_FIX_ASPECT_RATIO + CV_CALIB_ZERO_TANGENT_DIST /*+ CV_CALIB_SAME_FOCAL_LENGTH*/);
+    /* Calibrate separately each camera and use the outputted intrinsic matrices in cvStereoCalibrate */
+    double reprojectionError =  cvCalibrateCamera2( &_objectPoints, &_imagePointsCam1, &_npoints, mS_image_size,
+                                                    &_M1, &_D1, NULL, NULL,  CV_CALIB_FIX_K3);
+    printf("reprojection error for camera1: %f\n", reprojectionError);
+    reprojectionError =  cvCalibrateCamera2( &_objectPoints, &_imagePointsCam2, &_npoints, mS_image_size,
+                                                    &_M2, &_D2, NULL, NULL,  CV_CALIB_FIX_K3);
+    printf("reprojection error for camera2: %f\n", reprojectionError);
 
-    printf("%f ", repr);
+    double repr  =cvStereoCalibrate( &_objectPoints, &_imagePointsCam1, &_imagePointsCam2, &_npoints, &_M1, &_D1, &_M2, &_D2, mS_image_size, &_R, &_T, &_E, &_F,
+                                     cvTermCriteria(CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 100, 1e-5),
+                                     CV_CALIB_FIX_INTRINSIC/*+CV_CALIB_FIX_K3+CV_CALIB_FIX_ASPECT_RATIO*/ /*+ CV_CALIB_ZERO_TANGENT_DIST*/ /*+ CV_CALIB_SAME_FOCAL_LENGTH*/);
+//    double repr  =cvStereoCalibrate( &_objectPoints, &_imagePointsCam1, &_imagePointsCam2, &_npoints, &_M1, &_D1, &_M2, &_D2, mS_image_size, &_R, &_T, &_E, &_F,
+//                                     cvTermCriteria(CV_TERMCRIT_ITER+CV_TERMCRIT_EPS, 100, 1e-5),
+//                                     CV_CALIB_FIX_INTRINSIC/*+CV_CALIB_FIX_K3+CV_CALIB_FIX_ASPECT_RATIO*/ /*+ CV_CALIB_ZERO_TANGENT_DIST*/ /*+ CV_CALIB_SAME_FOCAL_LENGTH*/);
+    printf("reprojection error for both cameras: %f\n", repr);
 
     cvSave("intr.xml", &_M1);
 
@@ -183,6 +193,7 @@ StereoCameraParameters* StereoCalibration::calibrateCameras(){
     cameraParameters->setCameraParamaters1(camera1Parameters);
     cameraParameters->setCameraParamaters2(camera2Parameters);
 
+    calibrationQualityCheck(_imagePointsCam1, _imagePointsCam2, cameraParameters);
 
     return cameraParameters;
 
@@ -247,6 +258,64 @@ void StereoCalibration::rectifyBouguet(StereoCameraParameters* stereoCameraParam
 
 
 /**
+  Aceasta metoda efectueaza rectificarea prin metoda Hartley.
+  @param: stereoCameraParameters informatiile despre sistemul stereo: matricea de rotatie si de translatie dintre camere (obtinute in urma pasului de calibrare stereo)
+  */
+void StereoCalibration::rectifyHartley(StereoCameraParameters* stereoCameraParameters){
+    CameraParameters* camera1Parameters;
+    CameraParameters* camera2Parameters;
+    CvSize _imageSize;
+    double R1[3][3], R2[3][3];
+    double H1[3][3], H2[3][3], iM[3][3];
+
+    camera1Parameters = stereoCameraParameters->getCamera1Parameters();
+    camera2Parameters = stereoCameraParameters->getCamera2Parameters();
+
+    CvMat _imagePointsCam1 = cvMat(1, mInt_board_width*mInt_board_height*mInt_n_boards, CV_32FC2, &mVect_points_final[0][0] );
+    CvMat _imagePointsCam2 = cvMat(1, mInt_board_width*mInt_board_height*mInt_n_boards, CV_32FC2, &mVect_points_final[1][0] );
+
+    CvMat* M1 = cvCloneMat(camera1Parameters->getCameraMatrix());
+    CvMat* M2 = cvCloneMat(camera2Parameters->getCameraMatrix());
+
+    CvMat* D1 = cvCloneMat(camera1Parameters->getDistortionCoef());
+    CvMat* D2 = cvCloneMat(camera2Parameters->getDistortionCoef());
+
+    CvMat* F = cvCloneMat(stereoCameraParameters->getFundamentalMatrix());
+
+    CvMat _R1 = cvMat(3, 3, CV_64F, R1);
+    CvMat _R2 = cvMat(3, 3, CV_64F, R2);
+
+    //HARTLEY'S METHOD for RECTIFICATION
+    // use intrinsic parameters of each camera, but
+    // compute the rectification transformation directly
+    // from the fundamental matrix
+    CvMat _H1 = cvMat(3, 3, CV_64F, H1);
+    CvMat _H2 = cvMat(3, 3, CV_64F, H2);
+    CvMat _iM = cvMat(3, 3, CV_64F, iM);
+
+    _imageSize.height = mInt_board_height;
+    _imageSize.width = mInt_board_width;
+    cvStereoRectifyUncalibrated( &_imagePointsCam1, &_imagePointsCam2, F, _imageSize, &_H1, &_H2, 3);
+    cvInvert(M1, &_iM);
+    cvMatMul(&_H1, M1, &_R1);
+    cvMatMul(&_iM, &_R1, &_R1);
+    cvInvert(M2, &_iM);
+    cvMatMul(&_H2, M2, &_R2);
+    cvMatMul(&_iM, &_R2, &_R2);
+
+    mx1 = cvCreateMat( mS_image_size.height, mS_image_size.width, CV_32F );
+    my1 = cvCreateMat( mS_image_size.height, mS_image_size.width, CV_32F );
+    mx2 = cvCreateMat( mS_image_size.height, mS_image_size.width, CV_32F );
+    my2 = cvCreateMat( mS_image_size.height, mS_image_size.width, CV_32F );
+
+    //Precompute map for cvRemap()
+    cvInitUndistortRectifyMap(M1,D1,&_R1,M1,mx1,my1);
+    cvInitUndistortRectifyMap(M2,D2,&_R2,M2,mx2,my2);
+    // end of HARTLEY'S METHOD
+}
+
+
+/**
   Aceasta metoda determina harta cu disparitatile (disparity map) si harta de adancime (depth map) pentru o pereche de imagini de la sistemul stereo
   @param leftImage: imaginea de la camera stanga
   @param rightImage: imaginea de la camera dreapta
@@ -267,9 +336,6 @@ int StereoCalibration::computeDisparity(CvArr* leftImage, CvArr* rightImage){
     cvRemap(leftImage, leftImageRectified, mx1, my1);
     cvRemap(rightImage, rightImageRectified, mx2, my2);
 
-
-   // cvFindStereoCorrespondenceBM( leftImageRectified, rightImageRectified, imageDisparity, bmState);
-
      cvFindStereoCorrespondenceBM( leftImageRectified, rightImageRectified, imageDisparity, m_bmState);
 
     cvShowImage("image rectififed", leftImageRectified);
@@ -281,6 +347,61 @@ int StereoCalibration::computeDisparity(CvArr* leftImage, CvArr* rightImage){
 
 }
 
+
+/**
+  Aceasta metoda efectueaza o verificare a calitatii calibrarii stereo.
+  @param leftImage: imaginea de la camera stanga
+  @param rightImage: imaginea de la camera dreapta
+  @param: stereoCameraParameters informatiile despre sistemul stereo: matricea de rotatie si de translatie dintre camere (obtinute in urma pasului de calibrare stereo)
+  */
+void StereoCalibration :: calibrationQualityCheck(CvMat _imagePointsCam1, CvMat _imagePointsCam2, StereoCameraParameters *stereoCameraParameters) {
+    // because the output fundamental matrix implicitly
+    // includes all the output information,
+    // we can check the quality of calibration using the
+    // epipolar geometry constraint: m2^t*F*m1=0
+    vector<CvPoint3D32f> lines[2];
+    int n = mInt_board_width*mInt_board_height;
+    int N = mInt_n_boards * n;
+    double avgErr = 0;
+
+    CameraParameters* camera1Parameters;
+    CameraParameters* camera2Parameters;
+
+    camera1Parameters = stereoCameraParameters->getCamera1Parameters();
+    camera2Parameters = stereoCameraParameters->getCamera2Parameters();
+
+    CvMat* M1 = cvCloneMat(camera1Parameters->getCameraMatrix());
+    CvMat* M2 = cvCloneMat(camera2Parameters->getCameraMatrix());
+    CvMat* D1 = cvCloneMat(camera1Parameters->getDistortionCoef());
+    CvMat* D2 = cvCloneMat(camera2Parameters->getDistortionCoef());
+    CvMat* F = cvCloneMat(stereoCameraParameters->getFundamentalMatrix());
+
+    mVect_points_final[0].resize(N);
+    mVect_points_final[1].resize(N);
+    _imagePointsCam1 = cvMat(1, N, CV_32FC2, &mVect_points_final[0][0] );
+    _imagePointsCam2 = cvMat(1, N, CV_32FC2, &mVect_points_final[1][0] );
+    lines[0].resize(N);
+    lines[1].resize(N);
+    CvMat _L1 = cvMat(1, N, CV_32FC3, &lines[0][0]);
+    CvMat _L2 = cvMat(1, N, CV_32FC3, &lines[1][0]);
+
+    //Always work in undistorted space
+    cvUndistortPoints( &_imagePointsCam1, &_imagePointsCam1,
+        M1, D1, 0, M1 );
+    cvUndistortPoints( &_imagePointsCam2, &_imagePointsCam2,
+        M2, D2, 0, M2 );
+    cvComputeCorrespondEpilines( &_imagePointsCam1, 1, F, &_L1 );
+    cvComputeCorrespondEpilines( &_imagePointsCam2, 2, F, &_L2 );
+
+    for(int i = 0; i < N; i++ ) {
+        double err = fabs(mVect_points_final[0][i].x*lines[1][i].x +
+            mVect_points_final[0][i].y*lines[1][i].y + lines[1][i].z)
+            + fabs(mVect_points_final[1][i].x*lines[0][i].x +
+            mVect_points_final[1][i].y*lines[0][i].y + lines[0][i].z);
+        avgErr += err;
+    }
+    printf("avg err = %g\n", avgErr/N);
+}
 
 
 void StereoCalibration::printMatrix(CvMat* mat){
