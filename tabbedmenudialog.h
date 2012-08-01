@@ -19,6 +19,8 @@ class TabbedMenuDialog : public QDialog
 public:
     explicit TabbedMenuDialog(QWidget *parent = 0);
     ~TabbedMenuDialog();
+    void initBMStateTab();
+    void enableBMStateGUIComponents();
 
 private:
     Ui::TabbedMenuDialog *m_ui;
@@ -31,16 +33,30 @@ private:
     StereoCalibration m_stereoCalibration;
     IplImage* m_left_image;
     IplImage* m_right_image;
+    IplImage *disparityImageColor;
     CvMat* m_disparity;
+
+    ColouredDisparityMap *disparityMapColor;
+    ColouredDisparityMap::g2cd_data_t *g2cd_data;
 
 
 private slots:
-    void loadCalibParams();
-    void browseImagesPath();
-    void loadLeftImage();
-    void loadRightImage();
-    void startCalib();
-    void viewDisparityMap();
+    virtual void loadCalibParams();
+    virtual void browseImagesPath();
+    virtual void loadLeftImage();
+    virtual void loadRightImage();
+    virtual void startCalib();
+    virtual void viewDisparityMap();
+    virtual void tryParam();
+    virtual void updateFilterSize();
+    virtual void updateFilterCap();
+    virtual void updateSADWinSz();
+    virtual void updateTexture();
+    virtual void updateSpeckSz();
+    virtual void updateSpeckRange();
+    virtual void updateUniq();
+    virtual void updateMinDisp();
+    virtual void updateMaxDisp();
 };
 
 #endif // TABBEDMENUDIALOG_H

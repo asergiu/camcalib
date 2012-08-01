@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>688</width>
-    <height>418</height>
+    <width>677</width>
+    <height>478</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -254,6 +254,9 @@
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
           <widget class="QLabel" name="label_19">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Pre filter size</string>
            </property>
@@ -261,6 +264,9 @@
          </item>
          <item row="0" column="1">
           <widget class="QSlider" name="preFilterSz">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimum">
             <number>5</number>
            </property>
@@ -277,6 +283,9 @@
          </item>
          <item row="0" column="2">
           <widget class="QLineEdit" name="pSz">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>21</string>
            </property>
@@ -284,6 +293,9 @@
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_20">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Pre filter cap</string>
            </property>
@@ -291,6 +303,9 @@
          </item>
          <item row="1" column="1">
           <widget class="QSlider" name="preFilterCap">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimum">
             <number>1</number>
            </property>
@@ -307,6 +322,9 @@
          </item>
          <item row="1" column="2">
           <widget class="QLineEdit" name="pCap">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>30</string>
            </property>
@@ -314,6 +332,9 @@
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_21">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>SAD wndow size</string>
            </property>
@@ -321,6 +342,9 @@
          </item>
          <item row="2" column="1">
           <widget class="QSlider" name="SADWndSz">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimum">
             <number>5</number>
            </property>
@@ -340,6 +364,9 @@
          </item>
          <item row="2" column="2">
           <widget class="QLineEdit" name="sadSz">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>21</string>
            </property>
@@ -347,6 +374,9 @@
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_22">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Texture threshold</string>
            </property>
@@ -354,6 +384,9 @@
          </item>
          <item row="3" column="1">
           <widget class="QSlider" name="textureth">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimum">
             <number>1</number>
            </property>
@@ -367,6 +400,9 @@
          </item>
          <item row="3" column="2">
           <widget class="QLineEdit" name="textTh">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>1</string>
            </property>
@@ -374,6 +410,9 @@
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_23">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Min. disparity</string>
            </property>
@@ -381,6 +420,9 @@
          </item>
          <item row="4" column="1">
           <widget class="QSlider" name="minDisp">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimum">
             <number>-30</number>
            </property>
@@ -394,6 +436,9 @@
          </item>
          <item row="4" column="2">
           <widget class="QLineEdit" name="minDisp_2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
@@ -401,6 +446,9 @@
          </item>
          <item row="5" column="0">
           <widget class="QLabel" name="label_24">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Num.disparities</string>
            </property>
@@ -408,6 +456,9 @@
          </item>
          <item row="5" column="1">
           <widget class="QSlider" name="numDisp">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimum">
             <number>1</number>
            </property>
@@ -436,6 +487,9 @@
          </item>
          <item row="5" column="2">
           <widget class="QLineEdit" name="numDisp_2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>128</string>
            </property>
@@ -443,6 +497,9 @@
          </item>
          <item row="6" column="0">
           <widget class="QLabel" name="label_25">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Uniquness ratio</string>
            </property>
@@ -450,6 +507,9 @@
          </item>
          <item row="6" column="1">
           <widget class="QSlider" name="uniq">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimum">
             <number>1</number>
            </property>
@@ -463,6 +523,9 @@
          </item>
          <item row="6" column="2">
           <widget class="QLineEdit" name="uniqRatio">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>1</string>
            </property>
@@ -470,6 +533,9 @@
          </item>
          <item row="7" column="0">
           <widget class="QLabel" name="label_26">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Speckle win size</string>
            </property>
@@ -477,6 +543,9 @@
          </item>
          <item row="7" column="1">
           <widget class="QSlider" name="speckleWndSz">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimum">
             <number>1</number>
            </property>
@@ -487,6 +556,9 @@
          </item>
          <item row="7" column="2">
           <widget class="QLineEdit" name="spkSz">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>1</string>
            </property>
@@ -494,6 +566,9 @@
          </item>
          <item row="8" column="0">
           <widget class="QLabel" name="label_27">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Speckle range</string>
            </property>
@@ -501,6 +576,9 @@
          </item>
          <item row="8" column="1">
           <widget class="QSlider" name="specklerange">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="minimum">
             <number>1</number>
            </property>
@@ -511,6 +589,9 @@
          </item>
          <item row="8" column="2">
           <widget class="QLineEdit" name="spkRag">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>1</string>
            </property>
@@ -534,7 +615,10 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="tryBtn">
+          <widget class="QPushButton" name="saveParamsBtn">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Save paramters</string>
            </property>
@@ -548,6 +632,11 @@
       <attribute name="title">
        <string>Load BM state</string>
       </attribute>
+      <layout class="QFormLayout" name="formLayout_2">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::ExpandingFieldsGrow</enum>
+       </property>
+      </layout>
      </widget>
     </widget>
    </item>
@@ -562,8 +651,8 @@
    <slot>loadCalibParams()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>665</x>
-     <y>40</y>
+     <x>660</x>
+     <y>57</y>
     </hint>
     <hint type="destinationlabel">
      <x>638</x>
@@ -578,8 +667,8 @@
    <slot>startCalib()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>604</x>
-     <y>365</y>
+     <x>663</x>
+     <y>443</y>
     </hint>
     <hint type="destinationlabel">
      <x>565</x>
@@ -594,11 +683,11 @@
    <slot>loadLeftImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>563</x>
-     <y>191</y>
+     <x>663</x>
+     <y>277</y>
     </hint>
     <hint type="destinationlabel">
-     <x>686</x>
+     <x>670</x>
      <y>164</y>
     </hint>
    </hints>
@@ -610,11 +699,11 @@
    <slot>loadRightImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>589</x>
-     <y>239</y>
+     <x>663</x>
+     <y>319</y>
     </hint>
     <hint type="destinationlabel">
-     <x>688</x>
+     <x>670</x>
      <y>220</y>
     </hint>
    </hints>
@@ -626,8 +715,8 @@
    <slot>browseImagesPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>556</x>
-     <y>95</y>
+     <x>660</x>
+     <y>174</y>
     </hint>
     <hint type="destinationlabel">
      <x>639</x>
@@ -643,11 +732,315 @@
    <hints>
     <hint type="sourcelabel">
      <x>264</x>
-     <y>381</y>
+     <y>431</y>
     </hint>
     <hint type="destinationlabel">
      <x>218</x>
      <y>415</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>preFilterSz</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>updateFilterSize()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>183</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>99</x>
+     <y>1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>preFilterCap</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>updateFilterCap()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>258</x>
+     <y>71</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>2</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SADWndSz</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>updateSADWinSz()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>283</x>
+     <y>92</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>413</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>textureth</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>updateTexture()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>330</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>416</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>minDisp</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>updateMinDisp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>306</x>
+     <y>156</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>323</x>
+     <y>474</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>numDisp</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>updateMaxDisp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>360</x>
+     <y>186</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>451</x>
+     <y>475</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>uniq</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>updateUniq()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>253</x>
+     <y>211</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>191</x>
+     <y>475</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>speckleWndSz</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>updateSpeckSz()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>189</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>52</x>
+     <y>475</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>specklerange</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>updateSpeckRange()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>221</x>
+     <y>258</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>579</x>
+     <y>475</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveParamsBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>saveParams()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>615</x>
+     <y>370</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>675</x>
+     <y>386</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>preFilterSz</sender>
+   <signal>sliderReleased()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>tryParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>206</x>
+     <y>37</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>109</x>
+     <y>-13</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>preFilterCap</sender>
+   <signal>sliderReleased()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>tryParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>168</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>219</x>
+     <y>1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SADWndSz</sender>
+   <signal>sliderReleased()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>tryParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>231</x>
+     <y>96</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>556</x>
+     <y>-5</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>textureth</sender>
+   <signal>sliderReleased()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>tryParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>136</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>675</x>
+     <y>312</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>minDisp</sender>
+   <signal>sliderReleased()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>tryParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>152</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>676</x>
+     <y>253</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>numDisp</sender>
+   <signal>sliderReleased()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>tryParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>166</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>675</x>
+     <y>192</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>uniq</sender>
+   <signal>sliderReleased()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>tryParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>170</x>
+     <y>204</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>677</x>
+     <y>125</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>speckleWndSz</sender>
+   <signal>sliderReleased()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>tryParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>145</x>
+     <y>237</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>677</x>
+     <y>75</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>specklerange</sender>
+   <signal>sliderReleased()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>tryParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>284</x>
+     <y>264</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>673</x>
+     <y>51</y>
     </hint>
    </hints>
   </connection>
@@ -659,5 +1052,16 @@
   <slot>loadRightImage()</slot>
   <slot>startCalib()</slot>
   <slot>viewDisparityMap()</slot>
+  <slot>updateFilterSize()</slot>
+  <slot>updateFilterCap()</slot>
+  <slot>updateSADWinSz()</slot>
+  <slot>updateTexture()</slot>
+  <slot>updateMinDisp()</slot>
+  <slot>updateMaxDisp()</slot>
+  <slot>updateUniq()</slot>
+  <slot>updateSpeckSz()</slot>
+  <slot>updateSpeckRange()</slot>
+  <slot>saveParams()</slot>
+  <slot>tryParam()</slot>
  </slots>
 </ui>

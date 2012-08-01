@@ -16,11 +16,13 @@ TabbedMenuDialog::TabbedMenuDialog(QWidget *parent) :
     m_disparity =0 ;
 }
 
+
 TabbedMenuDialog::~TabbedMenuDialog()
 {
     delete m_ui;
     delete m_fileUtils;
 }
+
 
 void TabbedMenuDialog::loadCalibParams()
 {
@@ -37,6 +39,7 @@ void TabbedMenuDialog::loadCalibParams()
          }
 }
 
+
 void TabbedMenuDialog::browseImagesPath()
 {
     FileUtils* fileUtils = new FileUtils();
@@ -49,6 +52,7 @@ void TabbedMenuDialog::browseImagesPath()
 
     delete fileUtils;
 }
+
 
 void TabbedMenuDialog::loadLeftImage()
 {
@@ -63,6 +67,7 @@ void TabbedMenuDialog::loadLeftImage()
     delete fileUtils;
 }
 
+
 void TabbedMenuDialog::loadRightImage()
 {
     FileUtils *fileUtils = new FileUtils();
@@ -75,6 +80,7 @@ void TabbedMenuDialog::loadRightImage()
 
     delete fileUtils;
 }
+
 
 void TabbedMenuDialog::startCalib()
 {
@@ -155,16 +161,7 @@ void TabbedMenuDialog::startCalib()
         m_leftImage.replace(QString("\\"), QString("/"));
         m_rightImage.replace(QString("\\"), QString("/"));
 
-        IplImage* left_image_rectified = cvLoadImage(m_leftImage.toLocal8Bit().data(),0);
-        IplImage* right_image_rectified = cvLoadImage(m_rightImage.toLocal8Bit().data(),0);
-
-
-        AdjustBMParam* adjustParam = new AdjustBMParam(this);
-        adjustParam->setStereoCalibration(&m_stereoCalibration);
-        adjustParam->setLeftImage(left_image_rectified);
-        adjustParam->setRightImage(right_image_rectified);
-
-        adjustParam->show();
+        initBMStateTab();
 
         m_ui->real_time_disp->setEnabled(true);
     }
@@ -175,6 +172,7 @@ void TabbedMenuDialog::startCalib()
 
     }
 }
+
 
 void TabbedMenuDialog::viewDisparityMap()
 {
@@ -190,4 +188,201 @@ void TabbedMenuDialog::viewDisparityMap()
     rtDisparityMapDialog->setBMState(bmState);
     rtDisparityMapDialog->setImageSize(m_stereoCalibration.getImageSize());
     rtDisparityMapDialog->show();
+}
+
+
+/* Methods used for the tab that allows the user to adjust bmstates. */
+void TabbedMenuDialog::initBMStateTab() {
+    enableBMStateGUIComponents();
+
+    disparityMapColor = new ColouredDisparityMap();
+
+    g2cd_data = (ColouredDisparityMap::g2cd_data_t *) malloc(sizeof(ColouredDisparityMap::g2cd_data_t));
+
+    if (!disparityMapColor->g2cd_calculate_look_up_table (g2cd_data)) {
+        fprintf(stderr,"ERROR: Could not precalculate color lookup table.\n");
+    }
+
+    disparityImageColor = NULL;
+}
+
+
+void TabbedMenuDialog::enableBMStateGUIComponents() {
+    /* labels */
+    m_ui->label_19->setEnabled(true);
+    m_ui->label_20->setEnabled(true);
+    m_ui->label_21->setEnabled(true);
+    m_ui->label_22->setEnabled(true);
+    m_ui->label_23->setEnabled(true);
+    m_ui->label_24->setEnabled(true);
+    m_ui->label_25->setEnabled(true);
+    m_ui->label_26->setEnabled(true);
+    m_ui->label_27->setEnabled(true);
+
+    /* sliders */
+    m_ui->preFilterSz->setEnabled(true);
+    m_ui->preFilterCap->setEnabled(true);
+    m_ui->SADWndSz->setEnabled(true);
+    m_ui->textureth->setEnabled(true);
+    m_ui->minDisp->setEnabled(true);
+    m_ui->numDisp->setEnabled(true);
+    m_ui->uniq->setEnabled(true);
+    m_ui->speckleWndSz->setEnabled(true);
+    m_ui->specklerange->setEnabled(true);
+
+    /* line edits */
+    m_ui->pSz->setEnabled(true);
+    m_ui->pCap->setEnabled(true);
+    m_ui->sadSz->setEnabled(true);
+    m_ui->textTh->setEnabled(true);
+    m_ui->minDisp_2->setEnabled(true);
+    m_ui->numDisp_2->setEnabled(true);
+    m_ui->uniqRatio->setEnabled(true);
+    m_ui->spkSz->setEnabled(true);
+    m_ui->spkRag->setEnabled(true);
+
+    /* button */
+    m_ui->saveParamsBtn->setEnabled(true);
+}
+
+
+void TabbedMenuDialog::tryParam(){
+
+    IplImage* leftImageRectified = cvLoadImage(m_leftImage.toLocal8Bit().data(),0);
+    IplImage* rightImageRectified = cvLoadImage(m_rightImage.toLocal8Bit().data(),0);
+
+    int preFilterSz = this->m_ui->preFilterSz->value();
+    int preFilterCap = this->m_ui->preFilterCap->value();
+    int sadWndSz = this->m_ui->SADWndSz->value();
+    int minDisp = this->m_ui->minDisp->value();
+    int numDisp = 16*(this->m_ui->numDisp->value());
+    int texture = this->m_ui->textureth->value();
+    int uniquness = this->m_ui->uniq->value();
+    int spkWndSz = this->m_ui->speckleWndSz->value();
+    int spkRange = this->m_ui->specklerange->value();
+
+    if(sadWndSz%2==0)
+        sadWndSz++;
+    if(sadWndSz<5)
+        sadWndSz = 5;
+
+    if(preFilterSz%2==0)
+        preFilterSz++;
+    if(preFilterSz<5)
+        preFilterSz = 5;
+
+
+
+    CvStereoBMState *BMState = cvCreateStereoBMState();
+    assert(BMState != 0);
+    BMState->preFilterSize=preFilterSz;
+    BMState->preFilterCap=preFilterCap;
+    BMState->SADWindowSize=sadWndSz;
+    BMState->minDisparity= minDisp;
+    BMState->numberOfDisparities=numDisp;
+    BMState->textureThreshold=texture;		//reduce noise
+    BMState->uniquenessRatio=uniquness;
+    BMState->speckleWindowSize = spkWndSz;
+    BMState->speckleRange = spkRange;
+
+    m_stereoCalibration.setBMState(BMState);
+    m_stereoCalibration.computeDisparity(leftImageRectified, rightImageRectified);
+
+    CvMat* pair = cvCreateMat(leftImageRectified->height, rightImageRectified->width*2, CV_8UC3 );
+    CvMat part;
+
+
+    cvGetCols( pair, &part, 0, leftImageRectified->width );
+    cvCvtColor( m_stereoCalibration.leftImageRectified, &part, CV_GRAY2BGR );
+
+    cvGetCols( pair, &part, leftImageRectified->width, leftImageRectified->width*2 );
+    cvCvtColor( m_stereoCalibration.rightImageRectified, &part, CV_GRAY2BGR);
+
+    for(int j = 0; j < leftImageRectified->height; j += 25 )
+        cvLine( pair, cvPoint(0,j), cvPoint(leftImageRectified->width*2,j), CV_RGB(255,0,0));
+
+    cvReleaseImage(&disparityImageColor);
+    disparityImageColor = cvCreateImage (cvGetSize(leftImageRectified), IPL_DEPTH_8U, 3);
+    if (disparityImageColor == NULL)
+    {
+        fprintf(stderr,"ERROR: Could not create pseudocolor image.\n");
+        exit(2);
+    }
+
+    IplImage *img, img_header;
+    img = cvGetImage(m_stereoCalibration.imageDisparityNormalized, &img_header);
+
+    disparityMapColor->g2cd_gray_to_chromadepth(img, this->disparityImageColor, this->g2cd_data);
+
+    cvShowImage("disparity coloured", disparityImageColor);
+
+    cvNamedWindow( "rectified", 1 );
+    cvShowImage( "rectified", pair );
+
+    cvReleaseImage(&leftImageRectified);
+    cvReleaseImage(&rightImageRectified);
+    cvReleaseImage(&img);
+
+   // cvReleaseStereoBMState(&BMState);
+}
+
+
+void TabbedMenuDialog::updateFilterSize(){
+    int preFilterSz = this->m_ui->preFilterSz->value();
+    if(preFilterSz%2==0)
+        preFilterSz++;
+
+    this->m_ui->pSz->setText(QString("%1").arg(preFilterSz));
+}
+
+
+void TabbedMenuDialog::updateFilterCap(){
+    int preFilterCap = this->m_ui->preFilterCap->value();
+    this->m_ui->pCap->setText(QString("%1").arg(preFilterCap));
+}
+
+
+void TabbedMenuDialog::updateSADWinSz(){
+    int sadWndSz = this->m_ui->SADWndSz->value();
+
+    if(sadWndSz%2==0)
+        sadWndSz++;
+
+    this->m_ui->sadSz->setText(QString("%1").arg(sadWndSz));
+}
+
+
+void TabbedMenuDialog::updateTexture(){
+    int texture = this->m_ui->textureth->value();
+    this->m_ui->textTh->setText(QString("%1").arg(texture));
+}
+
+
+void TabbedMenuDialog::updateSpeckSz(){
+    int spkWndSz = this->m_ui->speckleWndSz->value();
+    this->m_ui->spkSz->setText(QString("%1").arg(spkWndSz));
+}
+
+
+void TabbedMenuDialog::updateSpeckRange(){
+    int spkRange = this->m_ui->specklerange->value();
+    this->m_ui->spkRag->setText(QString("%1").arg(spkRange));
+}
+
+
+void TabbedMenuDialog::updateUniq(){
+    int uniquness = this->m_ui->uniq->value();
+    this->m_ui->uniqRatio->setText(QString("%1").arg(uniquness));
+}
+
+
+void  TabbedMenuDialog::updateMinDisp(){
+    int minDisp = this->m_ui->minDisp->value();
+    this->m_ui->minDisp_2->setText(QString("%1").arg(minDisp));
+}
+
+
+void TabbedMenuDialog::updateMaxDisp(){
+    int numDisp = 16* this->m_ui->numDisp->value();
+    this->m_ui->numDisp_2->setText(QString("%1").arg(numDisp));
 }
