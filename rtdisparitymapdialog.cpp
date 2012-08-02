@@ -65,8 +65,8 @@ bool RTDisparityMapDialog::initialize(int left_index, int right_index){
 
             //            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, mSz_imageSize.width);
             //            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, mSz_imageSize.height);
-            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, 320);
-            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, 240);
+            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, 640);
+            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, 480);
         }
 
         return true;

@@ -1,18 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "stdio.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(&timer, SIGNAL(timeout()), this, SLOT(update_time()));
 
-
-    this->ui->pushButtonCalibrate->setEnabled(true);
+    this->ui->capture_frames_btn->setEnabled(true);
 
     camera_ready = false;
+    capture_frames = false;
+    camera_index = -1;
     sampleTimeout = ui->spinBoxInterval->value()*1000;
     ui->lcdNumber->display(sampleTimeout/1000);
     image_index = 0;
@@ -34,6 +33,9 @@ void MainWindow::initialize() {
 }
 
 
+/*
+ *Routine that is connected to the timer in case the cameras capture simultaneously.
+ */
 void MainWindow::update_time(){
 
     if(camera_ready == true ){
@@ -50,26 +52,28 @@ void MainWindow::update_time(){
 
         if(sampleTimeout < 0) {
             sampleTimeout = ui->spinBoxInterval->value()*1000;
-            if(!ui->pushButtonCalibrate->isEnabled()) {
-                image_index++;
+            if(capture_frames) {
+                if(camera_index == BOTH_CAMS) {
+                    /*Save the captures from both cameras (left and right).*/
+                    image_index++;
+                    char* left_image_name = new char[100];
+                    char* right_image_name = new char[100];
 
-                char* left_image_name = new char[100];
-                char* right_image_name = new char[100];
+                    sprintf(left_image_name, "left%d.tif", image_index);
+                    sprintf(right_image_name, "right%d.tif", image_index);
 
-                sprintf(left_image_name, "left%d.tif", image_index);
-                sprintf(right_image_name, "right%d.tif", image_index);
+                    cvSaveImage(left_image_name, left_image);
+                    cvSaveImage(right_image_name, right_image);
 
-                cvSaveImage(left_image_name, left_image);
-                cvSaveImage(right_image_name, right_image);
+                    sprintf(left_image_name, "left%d.png", image_index);
+                    sprintf(right_image_name, "right%d.png", image_index);
 
-                sprintf(left_image_name, "left%d.png", image_index);
-                sprintf(right_image_name, "right%d.png", image_index);
+                    cvSaveImage(left_image_name, left_image);
+                    cvSaveImage(right_image_name, right_image);
 
-                cvSaveImage(left_image_name, left_image);
-                cvSaveImage(right_image_name, right_image);
-
-                delete left_image_name;
-                delete right_image_name;
+                    delete left_image_name;
+                    delete right_image_name;
+                }
             }
         } else {
             ui->lcdNumber->display(sampleTimeout/1000);
@@ -80,8 +84,76 @@ void MainWindow::update_time(){
 }
 
 
-void MainWindow::startCapture(){
+/*
+ * Routine that is connected to the timer in case the cameras capture alternatively.
+ */
+void MainWindow::update_time_alternatively() {
+    if(camera_ready == true ){
+        IplImage* left_image, *right_image;
 
+        if(camera_index == LEFT_CAM) {
+            /*Show the left image.*/
+            stereoCamera.captureLeft();
+            left_image = stereoCamera.getFrameColor(0);
+            cvShowImage("left",left_image);
+        }  else if(camera_index == RIGHT_CAM) {
+            /*Show the right image.*/
+            stereoCamera.captureRight();
+            right_image = stereoCamera.getFrameColor(1);
+            cvShowImage("right",right_image);
+        }
+        if(sampleTimeout < 0) {
+            sampleTimeout = ui->spinBoxInterval->value()*1000;
+            if(capture_frames) {
+                if(camera_index == LEFT_CAM) {
+                    /*Save the capture from the camera in the left handside.*/
+                    image_index++;
+                    char* left_image_name = new char[100];
+                    sprintf(left_image_name, "left%d.tif", image_index);
+                    cvSaveImage(left_image_name, left_image);
+                    sprintf(left_image_name, "left%d.png", image_index);
+                    cvSaveImage(left_image_name, left_image);
+                    delete left_image_name;
+
+                    /* Move to the right camera and (re)activate it. */
+                    camera_index = RIGHT_CAM;
+                    stereoCamera.activateRightCamera(this->ui->right_camera_index_spinBox->value());
+                    ui->label_4->setText("RIGHT");
+                } else if(camera_index == RIGHT_CAM) {
+                    /*Save the capture from the camera in the right handside.*/
+                    char* right_image_name = new char[100];
+                    sprintf(right_image_name, "right%d.tif", image_index);
+                    cvSaveImage(right_image_name, right_image);
+                    sprintf(right_image_name, "right%d.png", image_index);
+                    cvSaveImage(right_image_name, right_image);
+                    delete right_image_name;
+
+                    /* Move to the left camera and (re)activate it. */
+                    camera_index = LEFT_CAM;
+                    stereoCamera.activateLeftCamera(this->ui->left_camera_index_spinBox->value());
+                    ui->label_4->setText("LEFT");
+                }
+            }
+        } else {
+            ui->lcdNumber->display(sampleTimeout/1000);
+            sampleTimeout -= timer.interval();
+        }
+
+        if(left_image) {
+            delete left_image;
+        }
+        if(right_image) {
+            delete right_image;
+        }
+    }
+}
+
+
+void MainWindow::startCapture(){
+    connect(&timer, SIGNAL(timeout()), this, SLOT(update_time()));
+
+    capture_frames = true;
+    camera_index = BOTH_CAMS;
     initialize();
     stereoCamera.capture();
     timer.start(50);
@@ -96,8 +168,9 @@ void MainWindow::startCapture(){
     cvShowImage("right",right_image);
 
     sampleTimeout = ui->spinBoxInterval->value()*1000;
-    ui->pushButtonCalibrate->setEnabled(false);
-
+    ui->capture_frames_btn->setEnabled(false);
+    ui->capture_btn->setEnabled(false);
+    ui->capture_alternatively_btn->setEnabled(false);
 }
 
 
@@ -106,6 +179,9 @@ void MainWindow::captureFrame(){
     IplImage* left_image;
     IplImage* right_image;
 
+    connect(&timer, SIGNAL(timeout()), this, SLOT(update_time()));
+
+    capture_frames = false;
     initialize();
     stereoCamera.capture();
     timer.start(50);
@@ -149,6 +225,9 @@ void MainWindow::captureFrame(){
     cvSaveImage(left_image_name2, left_image);
     cvSaveImage(right_image_name2, right_image);
 
+    ui->capture_frames_btn->setEnabled(false);
+    ui->capture_alternatively_btn->setEnabled(false);
+
     delete left_image_name;
     delete right_image_name;
 
@@ -160,6 +239,29 @@ void MainWindow::captureFrame(){
 }
 
 
+/*
+ * Routine that captures the images alternatively
+ * (first from the left camera and second from the right camera).
+ */
+void MainWindow::captureFramesAlternatively() {
+    connect(&timer, SIGNAL(timeout()), this, SLOT(update_time_alternatively()));
 
+    capture_frames = true;
+    camera_index = LEFT_CAM;
+    camera_ready = true;
 
+    /* Prepare the two cameras. The left one is activated.
+     * The label label_4 indicates what camera is currently capturing.
+     */
+    stereoCamera.nullifyMCaps();
+    stereoCamera.activateLeftCamera(this->ui->left_camera_index_spinBox->value());
+    ui->label_4->setEnabled(true);
+    ui->label_4->setText("LEFT");
 
+    timer.start(50);
+
+    sampleTimeout = ui->spinBoxInterval->value()*1000;
+    ui->capture_frames_btn->setEnabled(false);
+    ui->capture_btn->setEnabled(false);
+    ui->capture_alternatively_btn->setEnabled(false);
+}

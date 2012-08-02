@@ -4,6 +4,12 @@
 #include <QtGui/QMainWindow>
 #include "stereocamera.h"
 #include <QTimer>
+#include "stdio.h"
+
+
+#define LEFT_CAM 0
+#define RIGHT_CAM 1
+#define BOTH_CAMS 2
 
 
 namespace Ui
@@ -26,7 +32,9 @@ private:
     StereoCamera stereoCamera;
     QTimer timer;
     int sampleTimeout;
+    int camera_index;
     bool camera_ready;
+    bool capture_frames;
     CvCapture *leftCapture, *rightCapture;
 
 
@@ -34,7 +42,9 @@ private slots:
     void initialize();
     void startCapture();
     void update_time();
+    void update_time_alternatively();
     void captureFrame();
+    void captureFramesAlternatively();
 
 };
 
