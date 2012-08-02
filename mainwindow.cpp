@@ -15,8 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     sampleTimeout = ui->spinBoxInterval->value()*1000;
     ui->lcdNumber->display(sampleTimeout/1000);
     image_index = 0;
-
-    linuxV4L2Command();
 }
 
 
