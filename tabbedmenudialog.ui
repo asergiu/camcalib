@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>611</width>
-    <height>428</height>
+    <width>657</width>
+    <height>466</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -805,7 +805,7 @@
    <slot>loadCalibParams()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>660</x>
+     <x>640</x>
      <y>57</y>
     </hint>
     <hint type="destinationlabel">
@@ -821,8 +821,8 @@
    <slot>startCalib()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>470</x>
-     <y>303</y>
+     <x>563</x>
+     <y>412</y>
     </hint>
     <hint type="destinationlabel">
      <x>565</x>
@@ -837,11 +837,11 @@
    <slot>loadLeftImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>319</x>
-     <y>201</y>
+     <x>590</x>
+     <y>266</y>
     </hint>
     <hint type="destinationlabel">
-     <x>670</x>
+     <x>656</x>
      <y>164</y>
     </hint>
    </hints>
@@ -853,11 +853,11 @@
    <slot>loadRightImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>319</x>
-     <y>229</y>
+     <x>590</x>
+     <y>294</y>
     </hint>
     <hint type="destinationlabel">
-     <x>670</x>
+     <x>656</x>
      <y>220</y>
     </hint>
    </hints>
@@ -869,8 +869,8 @@
    <slot>browseImagesPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>319</x>
-     <y>141</y>
+     <x>590</x>
+     <y>206</y>
     </hint>
     <hint type="destinationlabel">
      <x>639</x>
@@ -885,8 +885,8 @@
    <slot>viewDisparityMap()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>303</y>
+     <x>432</x>
+     <y>412</y>
     </hint>
     <hint type="destinationlabel">
      <x>218</x>
@@ -970,7 +970,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>323</x>
-     <y>474</y>
+     <y>465</y>
     </hint>
    </hints>
   </connection>
@@ -986,7 +986,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>451</x>
-     <y>475</y>
+     <y>465</y>
     </hint>
    </hints>
   </connection>
@@ -1002,7 +1002,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>191</x>
-     <y>475</y>
+     <y>465</y>
     </hint>
    </hints>
   </connection>
@@ -1018,7 +1018,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>52</x>
-     <y>475</y>
+     <y>465</y>
     </hint>
    </hints>
   </connection>
@@ -1034,23 +1034,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>579</x>
-     <y>475</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>saveParamsBtn</sender>
-   <signal>clicked()</signal>
-   <receiver>TabbedMenuDialog</receiver>
-   <slot>saveParams()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>615</x>
-     <y>370</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>675</x>
-     <y>386</y>
+     <y>465</y>
     </hint>
    </hints>
   </connection>
@@ -1066,7 +1050,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>109</x>
-     <y>-13</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -1098,7 +1082,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>556</x>
-     <y>-5</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -1113,7 +1097,7 @@
      <y>131</y>
     </hint>
     <hint type="destinationlabel">
-     <x>675</x>
+     <x>656</x>
      <y>312</y>
     </hint>
    </hints>
@@ -1129,7 +1113,7 @@
      <y>157</y>
     </hint>
     <hint type="destinationlabel">
-     <x>676</x>
+     <x>656</x>
      <y>253</y>
     </hint>
    </hints>
@@ -1145,7 +1129,7 @@
      <y>183</y>
     </hint>
     <hint type="destinationlabel">
-     <x>675</x>
+     <x>656</x>
      <y>192</y>
     </hint>
    </hints>
@@ -1161,7 +1145,7 @@
      <y>204</y>
     </hint>
     <hint type="destinationlabel">
-     <x>677</x>
+     <x>656</x>
      <y>125</y>
     </hint>
    </hints>
@@ -1177,7 +1161,7 @@
      <y>237</y>
     </hint>
     <hint type="destinationlabel">
-     <x>677</x>
+     <x>656</x>
      <y>75</y>
     </hint>
    </hints>
@@ -1193,8 +1177,24 @@
      <y>264</y>
     </hint>
     <hint type="destinationlabel">
-     <x>673</x>
+     <x>656</x>
      <y>51</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveParamsBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>TabbedMenuDialog</receiver>
+   <slot>saveParameters()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>586</x>
+     <y>367</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>657</x>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -1215,7 +1215,7 @@
   <slot>updateUniq()</slot>
   <slot>updateSpeckSz()</slot>
   <slot>updateSpeckRange()</slot>
-  <slot>saveParams()</slot>
   <slot>tryParam()</slot>
+  <slot>saveParameters()</slot>
  </slots>
 </ui>

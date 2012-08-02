@@ -57,6 +57,7 @@ private slots:
     void updateUniq();
     void updateMinDisp();
     void updateMaxDisp();
+    bool saveParameters();
 };
 
 #endif // TABBEDMENUDIALOG_H

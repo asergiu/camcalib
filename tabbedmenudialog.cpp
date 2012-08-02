@@ -325,12 +325,6 @@ void TabbedMenuDialog::tryParam(){
 
     cvNamedWindow( "rectified", 1 );
     cvShowImage( "rectified", pair );
-
-    cvReleaseImage(&leftImageRectified);
-    cvReleaseImage(&rightImageRectified);
-    cvReleaseImage(&img);
-
-   // cvReleaseStereoBMState(&BMState);
 }
 
 
@@ -392,4 +386,54 @@ void  TabbedMenuDialog::updateMinDisp(){
 void TabbedMenuDialog::updateMaxDisp(){
     int numDisp = 16* this->m_ui->numDisp->value();
     this->m_ui->numDisp_2->setText(QString("%1").arg(numDisp));
+}
+
+
+bool TabbedMenuDialog::saveParameters(){
+    FileUtils* fileUtils = new FileUtils();
+
+    QString fileName = fileUtils->saveFile();
+
+    int preFilterSz = this->m_ui->preFilterSz->value();
+    int preFilterCap = this->m_ui->preFilterCap->value();
+    int sadWndSz = this->m_ui->SADWndSz->value();
+    int minDisp = this->m_ui->minDisp->value();
+    int numDisp = 16*(this->m_ui->numDisp->value());
+    int texture = this->m_ui->textureth->value();
+    int uniquness = this->m_ui->uniq->value();
+    int spkWndSz = this->m_ui->speckleWndSz->value();
+    int spkRange = this->m_ui->specklerange->value();
+
+    if(sadWndSz%2==0)
+        sadWndSz++;
+    if(sadWndSz<5)
+        sadWndSz = 5;
+
+    if(preFilterSz%2==0)
+        preFilterSz++;
+    if(preFilterSz<5)
+        preFilterSz = 5;
+
+
+    CvFileStorage* fstorage = cvOpenFileStorage(fileName.toLocal8Bit().data(), NULL, CV_STORAGE_WRITE);
+    if(fstorage == NULL){
+        fprintf(stderr,"ERROR: File storage NULL!\n");
+        return false;
+    }
+
+    cvWriteInt(fstorage, "preFilterSize", preFilterSz);
+    cvWriteInt(fstorage, "preFilterCap", preFilterCap);
+    cvWriteInt(fstorage, "sadWindowSize", sadWndSz);
+    cvWriteInt(fstorage, "minDisp", minDisp);
+    cvWriteInt(fstorage, "numDisp", numDisp);
+    cvWriteInt(fstorage, "textureThreshold", texture);
+    cvWriteInt(fstorage, "uniquness", uniquness);
+    cvWriteInt(fstorage, "spkWindowSize", spkWndSz);
+    cvWriteInt(fstorage,"spkRange", spkRange);
+
+    cvReleaseFileStorage(&fstorage);
+
+    delete fileUtils;
+
+    return true;
 }
