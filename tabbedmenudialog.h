@@ -41,22 +41,22 @@ private:
 
 
 private slots:
-    virtual void loadCalibParams();
-    virtual void browseImagesPath();
-    virtual void loadLeftImage();
-    virtual void loadRightImage();
-    virtual void startCalib();
-    virtual void viewDisparityMap();
-    virtual void tryParam();
-    virtual void updateFilterSize();
-    virtual void updateFilterCap();
-    virtual void updateSADWinSz();
-    virtual void updateTexture();
-    virtual void updateSpeckSz();
-    virtual void updateSpeckRange();
-    virtual void updateUniq();
-    virtual void updateMinDisp();
-    virtual void updateMaxDisp();
+    void loadCalibParams();
+    void browseImagesPath();
+    void loadLeftImage();
+    void loadRightImage();
+    void startCalib();
+    void viewDisparityMap();
+    void tryParam();
+    void updateFilterSize();
+    void updateFilterCap();
+    void updateSADWinSz();
+    void updateTexture();
+    void updateSpeckSz();
+    void updateSpeckRange();
+    void updateUniq();
+    void updateMinDisp();
+    void updateMaxDisp();
 };
 
 #endif // TABBEDMENUDIALOG_H
