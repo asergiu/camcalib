@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>677</width>
-    <height>478</height>
+    <width>611</width>
+    <height>428</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,170 +23,324 @@
       <attribute name="title">
        <string>Camera calibration</string>
       </attribute>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="3" column="2">
-          <widget class="QLineEdit" name="images_path"/>
-         </item>
-         <item row="6" column="2">
-          <widget class="QLineEdit" name="right_image_name"/>
-         </item>
-         <item row="8" column="2">
-          <widget class="QSpinBox" name="board_heightSpinBox">
-           <property name="value">
-            <number>6</number>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="2">
-          <widget class="QLineEdit" name="image_extension">
-           <property name="text">
-            <string>.tif</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="4">
-          <widget class="QPushButton" name="load_left">
-           <property name="text">
-            <string>Load</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QSpinBox" name="left_camera_index_spinbox">
-           <property name="value">
-            <number>0</number>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="4">
-          <widget class="QPushButton" name="calib_cameras">
-           <property name="text">
-            <string>Calibrate cameras</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>Left camera index</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="4">
-          <widget class="QPushButton" name="browse">
-           <property name="text">
-            <string>Browse</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="4">
-          <widget class="QPushButton" name="load_right">
-           <property name="text">
-            <string>Load</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="2">
-          <widget class="QSpinBox" name="board_widthSpinBox">
-           <property name="value">
-            <number>9</number>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Number of images</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QSpinBox" name="no_imagesSpinBox">
-           <property name="minimumSize">
-            <size>
-             <width>133</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="value">
-            <number>10</number>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Image extension</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Sample images path</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Right image</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Left image</string>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="2">
-          <widget class="QPushButton" name="real_time_disp">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="text">
-            <string>Real time disparity map</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="2">
-          <widget class="QLineEdit" name="left_image_name"/>
-         </item>
-         <item row="8" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>Board height</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>Board width</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_11">
-           <property name="text">
-            <string>Right camera index</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QSpinBox" name="right_camera_index_spinbox">
-           <property name="value">
-            <number>1</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>4</y>
+         <width>174</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_13">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_10">
+              <property name="text">
+               <string>Left camera index</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_11">
+              <property name="text">
+               <string>Right camera index</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>Number of images</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QSpinBox" name="left_camera_index_spinbox">
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="right_camera_index_spinbox">
+              <property name="value">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="no_imagesSpinBox">
+              <property name="minimumSize">
+               <size>
+                <width>41</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="value">
+               <number>10</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Board width</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>Board height</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <widget class="QSpinBox" name="board_widthSpinBox">
+              <property name="value">
+               <number>9</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="board_heightSpinBox">
+              <property name="value">
+               <number>6</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>330</y>
+         <width>110</width>
+         <height>54</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <widget class="QLabel" name="width_label">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Width</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="height_label">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Height</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <widget class="QSpinBox" name="resolution_width_spinBox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="maximum">
+             <number>11114</number>
+            </property>
+            <property name="value">
+             <number>320</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="resolution_height_spinBox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="maximum">
+             <number>14008</number>
+            </property>
+            <property name="value">
+             <number>240</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>4</x>
+         <y>152</y>
+         <width>581</width>
+         <height>116</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Sample images path</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Image extension</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Left image</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Right image</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QLineEdit" name="images_path"/>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="image_extension">
+            <property name="text">
+             <string>.tif</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="left_image_name"/>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="right_image_name"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <widget class="QPushButton" name="browse">
+            <property name="text">
+             <string>Browse</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>28</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="load_left">
+            <property name="text">
+             <string>Load</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="load_right">
+            <property name="text">
+             <string>Load</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QSplitter" name="splitter">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>360</y>
+         <width>286</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QPushButton" name="real_time_disp">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Real time disparity map</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="calib_cameras">
+        <property name="text">
+         <string>Calibrate cameras</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -667,8 +821,8 @@
    <slot>startCalib()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>663</x>
-     <y>443</y>
+     <x>470</x>
+     <y>303</y>
     </hint>
     <hint type="destinationlabel">
      <x>565</x>
@@ -683,8 +837,8 @@
    <slot>loadLeftImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>663</x>
-     <y>277</y>
+     <x>319</x>
+     <y>201</y>
     </hint>
     <hint type="destinationlabel">
      <x>670</x>
@@ -699,8 +853,8 @@
    <slot>loadRightImage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>663</x>
-     <y>319</y>
+     <x>319</x>
+     <y>229</y>
     </hint>
     <hint type="destinationlabel">
      <x>670</x>
@@ -715,8 +869,8 @@
    <slot>browseImagesPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>660</x>
-     <y>174</y>
+     <x>319</x>
+     <y>141</y>
     </hint>
     <hint type="destinationlabel">
      <x>639</x>
@@ -731,8 +885,8 @@
    <slot>viewDisparityMap()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>264</x>
-     <y>431</y>
+     <x>339</x>
+     <y>303</y>
     </hint>
     <hint type="destinationlabel">
      <x>218</x>

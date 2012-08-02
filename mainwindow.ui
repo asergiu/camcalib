@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
-    <height>100</height>
+    <width>442</width>
+    <height>194</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -26,155 +26,233 @@
    <string>Stereo Calibration</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QFormLayout" name="formLayout">
-    <item row="0" column="0">
-     <widget class="QSplitter" name="splitter">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <widget class="QWidget" name="layoutWidget1">
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Delay between images</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Left camera index</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Right camera index</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QSpinBox" name="spinBoxInterval">
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="value">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="left_camera_index_spinBox">
-            <property name="value">
-             <number>0</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="right_camera_index_spinBox">
-            <property name="value">
-             <number>1</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
+   <widget class="QSplitter" name="splitter">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>10</y>
+      <width>145</width>
+      <height>72</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+    <widget class="QPushButton" name="capture_frames_btn">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Capture frames</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="capture_btn">
+     <property name="text">
+      <string>Capture</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="capture_alternatively_btn">
+     <property name="text">
+      <string>Capture alternatively</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>156</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QSplitter" name="splitter_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QLabel" name="width_label">
+        <property name="text">
+         <string>Width</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="height_label">
+        <property name="text">
+         <string>Height</string>
+        </property>
+       </widget>
       </widget>
-      <widget class="QWidget" name="layoutWidget2">
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QLabel" name="labelSampleTimeout">
-          <property name="text">
-           <string>Time left (in seconds):</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLCDNumber" name="lcdNumber">
-          <property name="frameShape">
-           <enum>QFrame::Panel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <property name="lineWidth">
-           <number>1</number>
-          </property>
-          <property name="smallDecimalPoint">
-           <bool>true</bool>
-          </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::Filled</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-           </font>
-          </property>
-          <property name="text">
-           <string>Current camera</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+     </item>
+     <item>
+      <widget class="QSplitter" name="splitter_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QSpinBox" name="resolution_width_spinBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="maximum">
+         <number>11114</number>
+        </property>
+        <property name="value">
+         <number>320</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="resolution_height_spinBox">
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="maximum">
+         <number>14008</number>
+        </property>
+        <property name="value">
+         <number>240</number>
+        </property>
+       </widget>
       </widget>
-      <widget class="QWidget" name="layoutWidget3">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QPushButton" name="capture_frames_btn">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Capture frames</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="capture_btn">
-          <property name="text">
-           <string>Capture</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="capture_alternatively_btn">
-          <property name="text">
-           <string>Capture alternatively</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>184</width>
+      <height>77</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QSplitter" name="splitter_4">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Delay between images</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Left camera index</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Right camera index</string>
+        </property>
+       </widget>
       </widget>
-     </widget>
-    </item>
-   </layout>
+     </item>
+     <item>
+      <widget class="QSplitter" name="splitter_5">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QSpinBox" name="spinBoxInterval">
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="value">
+         <number>5</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="left_camera_index_spinBox">
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="right_camera_index_spinBox">
+        <property name="value">
+         <number>1</number>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>120</y>
+      <width>227</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QSplitter" name="splitter_6">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QLabel" name="labelSampleTimeout">
+        <property name="text">
+         <string>Time left (in seconds):</string>
+        </property>
+       </widget>
+       <widget class="QLCDNumber" name="lcdNumber">
+        <property name="frameShape">
+         <enum>QFrame::Panel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <property name="smallDecimalPoint">
+         <bool>true</bool>
+        </property>
+        <property name="segmentStyle">
+         <enum>QLCDNumber::Filled</enum>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_4">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+         <underline>false</underline>
+        </font>
+       </property>
+       <property name="text">
+        <string>Current camera</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <zorder>splitter</zorder>
+   <zorder>resolution_height_lineEdit</zorder>
+   <zorder>resolution_width_lineEdit</zorder>
+   <zorder>height_label</zorder>
+   <zorder>width_label</zorder>
+   <zorder></zorder>
+   <zorder></zorder>
+   <zorder>verticalSpacer</zorder>
+   <zorder>splitter_3</zorder>
+   <zorder>horizontalSpacer</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -223,7 +301,7 @@
      <y>71</y>
     </hint>
     <hint type="destinationlabel">
-     <x>477</x>
+     <x>441</x>
      <y>84</y>
     </hint>
    </hints>

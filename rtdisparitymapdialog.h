@@ -16,7 +16,8 @@ class RTDisparityMapDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit RTDisparityMapDialog(QWidget *parent = 0, int left_index = 0, int right_index = 1);
+    explicit RTDisparityMapDialog(QWidget *parent = 0, int left_index = 0, int right_index = 1,
+                                  int resolution_width = 320, int resolution_height = 240);
     ~RTDisparityMapDialog();
 
     bool initialize(int left_index, int right_index);

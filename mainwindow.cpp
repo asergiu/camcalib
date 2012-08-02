@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     sampleTimeout = ui->spinBoxInterval->value()*1000;
     ui->lcdNumber->display(sampleTimeout/1000);
     image_index = 0;
+
+    linuxV4L2Command();
 }
 
 
@@ -29,7 +31,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::initialize() {
     if(!camera_ready)
-        camera_ready = stereoCamera.initialize(this->ui->left_camera_index_spinBox->value(), this->ui->right_camera_index_spinBox->value());
+        camera_ready = stereoCamera.initialize(this->ui->left_camera_index_spinBox->value(),
+                                               this->ui->right_camera_index_spinBox->value(),
+                                               this->ui->resolution_width_spinBox->value(),
+                                               this->ui->resolution_height_spinBox->value());
 }
 
 
@@ -117,7 +122,9 @@ void MainWindow::update_time_alternatively() {
 
                     /* Move to the right camera and (re)activate it. */
                     camera_index = RIGHT_CAM;
-                    stereoCamera.activateRightCamera(this->ui->right_camera_index_spinBox->value());
+                    stereoCamera.activateRightCamera(this->ui->right_camera_index_spinBox->value(),
+                                                     this->ui->resolution_width_spinBox->value(),
+                                                     this->ui->resolution_height_spinBox->value());
                     ui->label_4->setText("RIGHT");
                 } else if(camera_index == RIGHT_CAM) {
                     /*Save the capture from the camera in the right handside.*/
@@ -130,20 +137,15 @@ void MainWindow::update_time_alternatively() {
 
                     /* Move to the left camera and (re)activate it. */
                     camera_index = LEFT_CAM;
-                    stereoCamera.activateLeftCamera(this->ui->left_camera_index_spinBox->value());
+                    stereoCamera.activateLeftCamera(this->ui->left_camera_index_spinBox->value(),
+                                                    this->ui->resolution_width_spinBox->value(),
+                                                    this->ui->resolution_height_spinBox->value());
                     ui->label_4->setText("LEFT");
                 }
             }
         } else {
             ui->lcdNumber->display(sampleTimeout/1000);
             sampleTimeout -= timer.interval();
-        }
-
-        if(left_image) {
-            delete left_image;
-        }
-        if(right_image) {
-            delete right_image;
         }
     }
 }
@@ -168,9 +170,19 @@ void MainWindow::startCapture(){
     cvShowImage("right",right_image);
 
     sampleTimeout = ui->spinBoxInterval->value()*1000;
+
+    /* Disable widgets. */
     ui->capture_frames_btn->setEnabled(false);
     ui->capture_btn->setEnabled(false);
     ui->capture_alternatively_btn->setEnabled(false);
+    ui->left_camera_index_spinBox->setEnabled(false);
+    ui->right_camera_index_spinBox->setEnabled(false);
+    ui->label->setEnabled(false);
+    ui->label_3->setEnabled(false);
+    ui->resolution_width_spinBox->setEnabled(false);
+    ui->resolution_height_spinBox->setEnabled(false);
+    ui->width_label->setEnabled(false);
+    ui->height_label->setEnabled(false);
 }
 
 
@@ -225,8 +237,17 @@ void MainWindow::captureFrame(){
     cvSaveImage(left_image_name2, left_image);
     cvSaveImage(right_image_name2, right_image);
 
+    /* Disable widgets. */
     ui->capture_frames_btn->setEnabled(false);
     ui->capture_alternatively_btn->setEnabled(false);
+    ui->left_camera_index_spinBox->setEnabled(false);
+    ui->right_camera_index_spinBox->setEnabled(false);
+    ui->label->setEnabled(false);
+    ui->label_3->setEnabled(false);
+    ui->resolution_width_spinBox->setEnabled(false);
+    ui->resolution_height_spinBox->setEnabled(false);
+    ui->width_label->setEnabled(false);
+    ui->height_label->setEnabled(false);
 
     delete left_image_name;
     delete right_image_name;
@@ -254,14 +275,54 @@ void MainWindow::captureFramesAlternatively() {
      * The label label_4 indicates what camera is currently capturing.
      */
     stereoCamera.nullifyMCaps();
-    stereoCamera.activateLeftCamera(this->ui->left_camera_index_spinBox->value());
+    stereoCamera.activateLeftCamera(this->ui->left_camera_index_spinBox->value(),
+                                    this->ui->resolution_width_spinBox->value(),
+                                    this->ui->resolution_height_spinBox->value());
     ui->label_4->setEnabled(true);
     ui->label_4->setText("LEFT");
 
     timer.start(50);
 
     sampleTimeout = ui->spinBoxInterval->value()*1000;
+
+    /* Disable widgets. */
     ui->capture_frames_btn->setEnabled(false);
     ui->capture_btn->setEnabled(false);
     ui->capture_alternatively_btn->setEnabled(false);
+    ui->left_camera_index_spinBox->setEnabled(false);
+    ui->right_camera_index_spinBox->setEnabled(false);
+    ui->label->setEnabled(false);
+    ui->label_3->setEnabled(false);
+    ui->resolution_width_spinBox->setEnabled(false);
+    ui->resolution_height_spinBox->setEnabled(false);
+    ui->width_label->setEnabled(false);
+    ui->height_label->setEnabled(false);
 }
+
+
+/*
+ * This routine can be used for obtaining the available resolutions for a certain camera.
+ * WARNING: this works just under Linux, provided that V4L2 is installed.
+ */
+/*void MainWindow::linuxV4L2Command() {
+    FILE *fp;
+    char resolution[1035];
+    char cmd[100];
+    sprintf(cmd, "v4l2-ctl --device=/dev/video1 --list-formats-ext | grep -oE '[[:digit:]]{1,4}x[[:digit:]]{1,4}'");
+    system(cmd);
+
+    // Open the command for reading.
+    fp = popen(cmd, "r");
+    if (fp == NULL) {
+        printf("Failed to run command\n" );
+        return;
+    }
+
+    // Read the output a line at a time - output it.
+    while (fgets(resolution, sizeof(resolution)-1, fp) != NULL) {
+    }
+
+    // Close
+    pclose(fp);
+}
+*/

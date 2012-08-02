@@ -163,6 +163,10 @@ void TabbedMenuDialog::startCalib()
 
         initBMStateTab();
 
+        m_ui->width_label->setEnabled(true);
+        m_ui->height_label->setEnabled(true);
+        m_ui->resolution_width_spinBox->setEnabled(true);
+        m_ui->resolution_height_spinBox->setEnabled(true);
         m_ui->real_time_disp->setEnabled(true);
     }
     else {
@@ -179,7 +183,10 @@ void TabbedMenuDialog::viewDisparityMap()
     m_ui->real_time_disp->setEnabled(false);
 
     RTDisparityMapDialog *rtDisparityMapDialog;
-    rtDisparityMapDialog =  new RTDisparityMapDialog(this, this->m_ui->left_camera_index_spinbox->value(), this->m_ui->right_camera_index_spinbox->value());
+    rtDisparityMapDialog =  new RTDisparityMapDialog(this, this->m_ui->left_camera_index_spinbox->value(),
+                                                     this->m_ui->right_camera_index_spinbox->value(),
+                                                     this->m_ui->resolution_width_spinBox->value(),
+                                                     this->m_ui->resolution_height_spinBox->value());
     rtDisparityMapDialog->startTimer();
 
     rtDisparityMapDialog->setStereocalibration(&m_stereoCalibration);

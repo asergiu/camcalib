@@ -11,12 +11,12 @@ public:
     ~StereoCamera();
 
 
-    bool initialize(int left_index, int right_index);
+    bool initialize(int left_index, int right_index, int width, int height);
     void capture();
     void captureLeft();
     void captureRight();
-    void activateLeftCamera(int left_index);
-    void activateRightCamera(int right_index);
+    void activateLeftCamera(int left_index, int width, int height);
+    void activateRightCamera(int right_index, int width, int height);
     IplImage* getFrame(int cameraIndex);
     IplImage* getFrameColor(int cameraIndex);
     void nullifyMCaps();

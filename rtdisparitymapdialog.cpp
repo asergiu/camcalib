@@ -1,7 +1,8 @@
 #include "rtdisparitymapdialog.h"
 #include "ui_rtdisparitymapdialog.h"
 
-RTDisparityMapDialog::RTDisparityMapDialog(QWidget *parent, int left_index, int right_index) :
+RTDisparityMapDialog::RTDisparityMapDialog(QWidget *parent, int left_index, int right_index,
+                                           int resolution_width, int resolution_height) :
     QDialog(parent),
     ui(new Ui::RTDisparityMapDialog)
 {

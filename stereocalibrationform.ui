@@ -18,6 +18,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <layout class="QFormLayout" name="formLayout">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::ExpandingFieldsGrow</enum>
+       </property>
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
@@ -47,6 +50,46 @@
        </item>
        <item row="2" column="1">
         <widget class="QSpinBox" name="height"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="resolution_height_label">
+         <property name="text">
+          <string>Resolution height</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="resolution_width_label">
+         <property name="text">
+          <string>Resolution width</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="resolution_width_spinBox">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="maximum">
+          <number>11114</number>
+         </property>
+         <property name="value">
+          <number>320</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="resolution_height_spinBox">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="maximum">
+          <number>14008</number>
+         </property>
+         <property name="value">
+          <number>240</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

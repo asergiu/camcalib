@@ -25,6 +25,7 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void trace(QString str);
+    void linuxV4L2Command();
     Ui::MainWindow *ui;
 
 private:

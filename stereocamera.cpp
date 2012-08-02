@@ -1,5 +1,5 @@
 #include "stereocamera.h"
-
+#include <stdio.h>
 
 StereoCamera::StereoCamera()
 {
@@ -49,7 +49,7 @@ void StereoCamera::captureRight() {
 /* Routine that activates only the left camera.
  * This is used in case of the alternative capturing where one camera at a time functions.
  */
-void StereoCamera::activateLeftCamera(int left_index) {
+void StereoCamera::activateLeftCamera(int left_index, int width, int height) {
     /* Release the previously used camera; in this case, the right one. */
     if(mCap_captures[1]) {
         cvReleaseCapture(&mCap_captures[1]);
@@ -57,15 +57,15 @@ void StereoCamera::activateLeftCamera(int left_index) {
 
     /* Activate the left camera and set its properties. */
     mCap_captures[0] = cvCaptureFromCAM(left_index);
-    cvSetCaptureProperty(mCap_captures[0], CV_CAP_PROP_FRAME_WIDTH, 320);
-    cvSetCaptureProperty(mCap_captures[0], CV_CAP_PROP_FRAME_HEIGHT, 240);
+    cvSetCaptureProperty(mCap_captures[0], CV_CAP_PROP_FRAME_WIDTH, width);
+    cvSetCaptureProperty(mCap_captures[0], CV_CAP_PROP_FRAME_HEIGHT, height);
 }
 
 
 /* Routine that activates only the right camera.
  * This is used in case of the alternative capturing where one camera at a time functions.
  */
-void StereoCamera::activateRightCamera(int right_index) {
+void StereoCamera::activateRightCamera(int right_index, int width, int height) {
     /* Release the previously used camera; in this case, the left one. */
     if(mCap_captures[0]) {
         cvReleaseCapture(&mCap_captures[0]);
@@ -73,15 +73,15 @@ void StereoCamera::activateRightCamera(int right_index) {
 
     /* Activate the right camera and set its properties. */
     mCap_captures[1] = cvCaptureFromCAM(right_index);
-    cvSetCaptureProperty(mCap_captures[1], CV_CAP_PROP_FRAME_WIDTH, 320);
-    cvSetCaptureProperty(mCap_captures[1], CV_CAP_PROP_FRAME_HEIGHT, 240);
+    cvSetCaptureProperty(mCap_captures[1], CV_CAP_PROP_FRAME_WIDTH, width);
+    cvSetCaptureProperty(mCap_captures[1], CV_CAP_PROP_FRAME_HEIGHT, height);
 }
 
 
 /* Routine that initializes both the left and the right cameras.
  * This is used in case of simultaneous captures of images.
  */
-bool StereoCamera::initialize(int left_index, int right_index){
+bool StereoCamera::initialize(int left_index, int right_index, int width, int height){
 
     mCap_captures[0] = cvCaptureFromCAM(left_index);
     mCap_captures[1] = cvCaptureFromCAM(right_index);
@@ -89,8 +89,8 @@ bool StereoCamera::initialize(int left_index, int right_index){
     if( mCap_captures[0] && mCap_captures[1]){
 
                 for(int i = 0; i < 2; i++){
-                    cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, 320);
-                    cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, 240);
+                    cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, width);
+                    cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, height);
                 }
 
         return true;

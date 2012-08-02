@@ -15,7 +15,9 @@ StereoCalibrationForm::StereoCalibrationForm(QWidget *parent, int left_index, in
     stereoCamera = new StereoCamera();
     stereoCalibration = new StereoCalibration();
 
-    stereoCamera->initialize(left_index, right_index);
+    stereoCamera->initialize(left_index, right_index,
+                             this->ui->resolution_width_spinBox->value(),
+                             this->ui->resolution_height_spinBox->value());
     ui->setupUi(this);
 }
 
