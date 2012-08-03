@@ -17,7 +17,7 @@ RTDisparityMapDialog::RTDisparityMapDialog(QWidget *parent, int left_index, int 
     mMat_disparity = 0;
     m_BMState = 0;
 
-    bool camera_ready = initialize(left_index, right_index);
+    bool camera_ready = initialize(left_index, right_index, resolution_width, resolution_height);
     if(!camera_ready){
         fprintf(stderr, "ERROR: Could not start camera capture!");
         exit(1);
@@ -54,7 +54,7 @@ RTDisparityMapDialog::~RTDisparityMapDialog()
 
 
 
-bool RTDisparityMapDialog::initialize(int left_index, int right_index){
+bool RTDisparityMapDialog::initialize(int left_index, int right_index, int resolution_width, int resolution_height){
 
     mCap_captures[0] = cvCaptureFromCAM(left_index);
     mCap_captures[1] = cvCaptureFromCAM(right_index);
@@ -63,11 +63,8 @@ bool RTDisparityMapDialog::initialize(int left_index, int right_index){
 
         printf("%d %d", mSz_imageSize.width, mSz_imageSize.height);
         for(int i = 0; i < 2; i++){
-
-            //            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, mSz_imageSize.width);
-            //            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, mSz_imageSize.height);
-            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, 640);
-            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, 480);
+            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_WIDTH, resolution_width);
+            cvSetCaptureProperty(mCap_captures[i], CV_CAP_PROP_FRAME_HEIGHT, resolution_height);
         }
 
         return true;

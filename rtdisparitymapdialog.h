@@ -20,7 +20,7 @@ public:
                                   int resolution_width = 320, int resolution_height = 240);
     ~RTDisparityMapDialog();
 
-    bool initialize(int left_index, int right_index);
+    bool initialize(int left_index, int right_index, int resolution_width, int resolution_height);
 
     void setStereocalibration(StereoCalibration* m_stereoCalibration);
     void setBMState(CvStereoBMState* bmState);

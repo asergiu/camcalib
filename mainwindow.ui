@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>442</width>
-    <height>194</height>
+    <width>462</width>
+    <height>199</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -57,7 +57,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -118,7 +118,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -183,7 +183,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -241,16 +241,10 @@
      </item>
     </layout>
    </widget>
+   <zorder>layoutWidget</zorder>
    <zorder>splitter</zorder>
-   <zorder>resolution_height_lineEdit</zorder>
-   <zorder>resolution_width_lineEdit</zorder>
-   <zorder>height_label</zorder>
-   <zorder>width_label</zorder>
-   <zorder></zorder>
-   <zorder></zorder>
-   <zorder>verticalSpacer</zorder>
-   <zorder>splitter_3</zorder>
-   <zorder>horizontalSpacer</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
